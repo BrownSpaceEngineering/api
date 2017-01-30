@@ -24,8 +24,15 @@ exportObj.addTemperature = function(temp){
   });
 };
 
-// update one
+// update one (Someone please fix this cause I have no idea what I'm doing)
+exportObj.updateTemperature = function(id, newTemp){
+  return Temperature.update(newTemp, { where: { id: id } });
+};
+
+// delete a temperature reading based on id
+exportObj.deleteTemperature = function(id){
+  return Temperature.destroy({ where: { id: id } });
+};
 
 
-// delete one
-
+ 
