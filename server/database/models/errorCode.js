@@ -11,7 +11,10 @@ module.exports = db.define('errorCode', {
     validate: {
       len: [5,5]
     }
+  },
+  time: {
+    type: Sequelize.DATE,
+    defaultValue: Sequelize.NOW()
   }
-
 
 })
