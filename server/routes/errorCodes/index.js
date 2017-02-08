@@ -20,7 +20,7 @@ router.post('/:error', function (req, res , next ) {
 
 // Return error with id 'id'
 router.get('/:id', function (req, res, next) {
-  ErrorCode.getErrorCodeByID(id)
+  ErrorCode.getErrorCodeByID(req.params['id)'])
   .then(function(errorCode){
     res.send(errorCode);
   })

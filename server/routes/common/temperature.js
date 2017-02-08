@@ -1,7 +1,5 @@
 var db = require('../../database/_db');
 
-//var Temperature = db.model('temperature');
-
 var exportObj = {};
 
 exportObj = {};
