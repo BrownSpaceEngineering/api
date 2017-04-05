@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var db = require('./database');
-
+var routes = require('./routes');
 
 // logging middleware
 app.use(morgan('dev'));
@@ -12,13 +12,16 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true })); // for HTML form submits
 app.use(bodyParser.json()); // would be for AJAX requests
 
+app.use('/', routes);
+
 db.sync({force: true})
 .then(function(){
-  var routes = require('./routes');
-  app.use('/', routes);
   var server = app.listen(1337, function(){
+
     console.log('server listening on port 1337');
   })
-  require('./database/seed')();
-
 })
+
+
+
+
