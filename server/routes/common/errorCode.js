@@ -1,41 +1,38 @@
 var db = require('../../database/_db');
 
-var ErrorCode = db.model('errorCode');
+var ErrorInfo = db.model('errorInfo');
 
 var exportObj = {};
-//TODO: Rename ErrorCode methods to proper Sequelize names
+
 exportObj.addErrorCode = function(error){
-  return ErrorCode.create(error)
-  .then(function(createdError){
-    createdError.validation = 'Jason'
-    return createdError;
-  })
+  return ErrorInfo.create(error);
 }
 
 exportObj.findAllErrorCodes = function(){
-  return ErrorCode.findAll()
+  return ErrorInfo.findAll()
 }
 
-exportObj.getErrorCodeByID = function(id) {
-  return ErrorCode.getByID(id);
+exportObj.getErrorCodeById = function(id) {
+  return ErrorInfo.getById(id);
 }
 
-exportObj.getErrorCodesByType = function(type) {
-  return ErrorCode.getByType(type);
+exportObj.getErrorCodesByTid = function(tid) {
+  return ErrorInfo.findAll({
+    where: {
+      tid: tid
+    }
+  });
 }
 
 exportObj.deleteErrorCode = function(id) {
-  return ErrorCode.delete(id)
+  return ErrorInfo.delete(id)
   .then(function(deletedError) {
 
   })
 }
 
 exportObj.updateErrorCode = function(id, newData) {
-  return ErrorCode.update(id, newData)
-  .then(function(updatedError) {
-
-  })
+  return ErrorInfo.update(id, newData);
 }
 
 
