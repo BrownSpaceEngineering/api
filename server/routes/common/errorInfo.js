@@ -1,6 +1,4 @@
-var db = require('../../database/_db');
-
-var ErrorInfo = db.model('errorInfo');
+var ErrorInfo = require('../../database/models/errorInfo');
 
 var exportObj = {};
 
@@ -9,7 +7,7 @@ exportObj.addErrorInfo = function(error){
 }
 
 exportObj.findAllErrorInfos = function(){
-  return ErrorInfo.findAll()
+  return ErrorInfo.findAll();
 }
 
 exportObj.getErrorInfoById = function(id) {

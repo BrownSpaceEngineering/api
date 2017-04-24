@@ -13,7 +13,7 @@ module.exports = db.define('raw', {
   },
 
   raw: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false
   }
 

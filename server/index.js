@@ -12,9 +12,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true })); // for HTML form submits
 app.use(bodyParser.json()); // would be for AJAX requests
 
-app.use('/', routes);
+app.use('/api', routes);
 
-db.sync({force: true})
+db.sync()
 .then(function(){
   var server = app.listen(1337, function(){
 

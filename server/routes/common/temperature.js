@@ -1,9 +1,6 @@
 var db = require('../../database/_db');
 
 var exportObj = {};
-
-exportObj = {};
-
 // get all
 exportObj.findAllTemperatures = function(model){
 
@@ -17,10 +14,7 @@ exportObj.getTemperatureByID = function(model, id){
 
 // add one
 exportObj.addTemperature = function(model, temp){
-  return db.model(model).create(temp)
-  .then(function(createdTemp){
-    db.model(model).findOrCreate(createdTemp);
-  });
+  return db.model(model).create(temp);
 };
 
 // update one (Someone please fix this cause I have no idea what I'm doing)
@@ -32,3 +26,5 @@ exportObj.updateTemperature = function(model, id, newTemp){
 exportObj.deleteTemperature = function(model, id){
   return db.model(model).destroy({ where: { id: id } });
 };
+
+module.exports = exportObj;
