@@ -5,7 +5,7 @@ module.exports = db;
 
 // Declare model relationships
 
-var Raw = require('./models/raw')
+var Raw = require('./models/raw');
 var Preamble = require('./models/preamble');
 var ErrorInfo = require('./models/errorInfo');
 
@@ -47,43 +47,43 @@ var AttitudeIrSensor = require('./models/dataAttitude/attitudeIrSensor');
 var AttitudeMagnetometer = require('./models/dataAttitude/attitudeMagnetometer');
 var AttitudePhotoDiode = require('./models/dataAttitude/attitudePhotoDiode');
 
-Preamble.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-ErrorInfo.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+Preamble.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+ErrorInfo.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-CurrBatteryChargingAnalogVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrBatteryChargingDigitalSignal.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrBatteryTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+CurrBatteryChargingAnalogVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrBatteryChargingDigitalSignal.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrBatteryTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-CurrImuAccelerometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrImuGyroscope.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrImuMagnetometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+CurrImuAccelerometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrImuGyroscope.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrImuMagnetometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-CurrLastFlashLedCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrLastFlashLedTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrLastFlashLifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+CurrLastFlashLedCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrLastFlashLedTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrLastFlashLifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-CurrLionCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrLionDischarge.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrLionVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+CurrLionCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrLionDischarge.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrLionVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-CurrRadioTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrRadioVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+CurrRadioTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrRadioVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-CurrDigitalOutput.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrIrReading.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-CurrPhotoDiode.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+CurrDigitalOutput.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrIrReading.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+CurrPhotoDiode.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-RadioTransmissionCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-RadioTransmissionLionVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-RadioTransmissionTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+RadioTransmissionCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+RadioTransmissionLionVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+RadioTransmissionTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-FlashBurstLifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-FlashBurstLifepoVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-FlashBurstTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+FlashBurstLifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+FlashBurstLifepoVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+FlashBurstTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-AttitudeImuAccelerometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-AttitudeImuGyroscope.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-AttitudeImuMagnetometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-AttitudeIrSensor.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-AttitudeMagnetometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
-AttitudePhotoDiode.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'})
+AttitudeImuAccelerometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+AttitudeImuGyroscope.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+AttitudeImuMagnetometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+AttitudeIrSensor.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+AttitudeMagnetometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+AttitudePhotoDiode.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});

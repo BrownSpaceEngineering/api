@@ -23,6 +23,4 @@ module.exports = db.define('radioTransmissionLionVoltage', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
-
-})
+});

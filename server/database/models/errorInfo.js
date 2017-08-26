@@ -19,6 +19,4 @@ module.exports = db.define('errorInfo', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
-
-})
+});

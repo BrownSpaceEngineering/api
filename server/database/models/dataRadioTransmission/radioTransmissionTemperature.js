@@ -23,6 +23,4 @@ module.exports = db.define('radioTransmissionTemperature', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
-
-})
+});

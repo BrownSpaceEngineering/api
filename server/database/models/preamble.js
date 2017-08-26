@@ -33,6 +33,4 @@ module.exports = db.define('preamble', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
-
-})
+});

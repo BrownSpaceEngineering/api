@@ -15,13 +15,10 @@ app.use(bodyParser.json()); // would be for AJAX requests
 app.use('/api', routes);
 
 db.sync()
-.then(function(){
-  var server = app.listen(1337, function(){
+.then(function (){
+  var server = app.listen(1337, function (){
 
     console.log('server listening on port 1337');
-  })
-})
-
-
-
+  });
+});
 
