@@ -3,7 +3,7 @@ var ErrorInfo = require('../common/errorInfo');
 
 // Get all errorInfo
 router.get('/', function (req, res, next){
-  ErrorInfo.findAllErrorInfos()
+  ErrorInfo.findAllErrorInfo()
   .then(function (errorInfos){ // After finding error Infos, send to client
     res.send(errorInfos);
   })

@@ -2,7 +2,7 @@ var db = require('../../database/_db');
 
 var exportObj = {};
 // get all
-exportObj.findAllTemperatures = function(model){
+exportObj.findAllTemperature = function(model){
 
   return db.model(model).findAll();
 };

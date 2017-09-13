@@ -6,7 +6,7 @@ exportObj.addErrorInfo = function (error){
   return ErrorInfo.create(error);
 };
 
-exportObj.findAllErrorInfos = function (){
+exportObj.findAllErrorInfo = function (){
   return ErrorInfo.findAll();
 };
 
