@@ -1,0 +1,19 @@
+version: '2'
+services:
+  api:
+    container_name: satellite_api
+    build:
+      context: .
+      dockerfile: Dockerfile-api
+    ports:
+      - "80:80"
+  db:
+    image: postgresql
+    container_name: satellite_db
+    build:
+      context: .
+      dockerfile: Dockerfile-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - /var/lib/satellitedb
