@@ -4,16 +4,18 @@ services:
     container_name: satellite_api
     build:
       context: .
-      dockerfile: Dockerfile-api
+      dockerfile: Dockerfile
     ports:
       - "80:80"
+    depends_on:
+      - db
   db:
-    image: postgresql
-    container_name: satellite_db
-    build:
-      context: .
-      dockerfile: Dockerfile-db
+    image: postgres:9.6
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: '123456'
+      POSTGRES_USER: 'user'
+      POSTGRES_DB: 'db'
     volumes:
       - /var/lib/satellitedb

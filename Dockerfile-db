@@ -1,7 +1,0 @@
-FROM postgresql:9.6
-MAINTAINER Ali Mir, ali_mir@brown.edu
-
-
-EXPOSE 80
-
-CMD [ "npm", "start" ]
