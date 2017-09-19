@@ -4,7 +4,7 @@ MAINTAINER Ali Mir, ali_mir@brown.edu
 # Install app dependencies
 ADD package.json /tmp/package.json
 RUN cd /tmp && npm install
-RUN mkdir -p /var/www/node_modules
+RUN mkdir -p /var/www/nodes
 RUN cp -a /tmp/node_modules /var/www/node_modules
 RUN npm install
 COPY . .
