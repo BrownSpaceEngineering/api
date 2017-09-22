@@ -2,13 +2,13 @@ FROM node:8.5
 MAINTAINER Ali Mir, ali_mir@brown.edu
 
 # Install app dependencies
-ADD package.json /tmp/package.json
-RUN cd /tmp && npm install
-RUN mkdir -p /var/www/nodes
-RUN cp -a /tmp/node_modules /var/www/node_modules
+WORKDIR /usr/src/app
+COPY package.json .
+COPY package-lock.json .
 RUN npm install
 COPY . .
 
 EXPOSE 80
 
+WORKDIR /usr/src/app
 CMD [ "npm", "start" ]
