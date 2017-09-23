@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 // var db = require('./database');
-// var routes = require('./routes');
+var routes = require('./routes');
 
 // logging middleware
 app.use(morgan('dev'));
