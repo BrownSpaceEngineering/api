@@ -16,8 +16,8 @@ app.use(bodyParser.json()); // would be for AJAX requests
 
 // db.sync()
 // .then(function (){
-  var server = app.listen(1337, function (){
+  var server = app.listen(80, function (){
 
-    console.log('server listening on port 1337');
+    console.log('server listening on port 80');
   });
 // });
