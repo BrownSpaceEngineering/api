@@ -16,7 +16,7 @@ app.use('/api', routes);
 
 // db.sync()
 // .then(function (){
-  var server = app.listen(80, function (){
+  var server = app.listen(80, '0.0.0.0' function (){
 
     console.log('server listening on port 80');
   });
