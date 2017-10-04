@@ -42,24 +42,32 @@ var RadioTransmissionCurrent = require('./../../database/models/dataRadioTransmi
 var RadioTransmissionLionVoltage = require('./../../database/models/dataRadioTransmission/radioTransmissionLionVoltage.js')
 var RadioTransmissionTemperature = require('./../../database/models/dataRadioTransmission/radioTransmissionTemperature.js')
 
-var promises = []
-
 // Main route for receiving data
 router.post('/', function(req, res, next){
-	promises = []
 	saveAll(req.body, res)
 });
 
 function saveAll(rawJSON, res) {
+	var tid;
 	saveRaw(rawJSON)
 	.then(function(obj){
-		savePreamble(rawJSON.preamble, obj.tid)
-		saveErrorInfo(rawJSON.error_info, obj.tid)
-		saveCurrentData(rawJSON.current_data_info, obj.tid)
-		saveAttitudeData(rawJSON.data_attitude, obj.tid)
-		saveDataFlashBurst(rawJSON.data_flash_burst, obj.tid)
-		saveDataRadioTransmission(rawJSON.data_radio_transmission, obj.tid)
-		return Promise.all(promises)
+		tid = obj.tid
+		return savePreamble(rawJSON.preamble, tid)
+	})
+	.then(function() {
+		return saveErrorInfo(rawJSON.error_info, tid)
+	}) 
+	.then(function() {
+		return saveCurrentData(rawJSON.current_data_info, tid)
+	})
+	.then(function() {
+		return saveAttitudeData(rawJSON.data_attitude, tid)
+	})
+	.then(function() {
+		return saveDataFlashBurst(rawJSON.data_flash_burst, tid)
+	})
+	.then(function() {
+		return saveDataRadioTransmission(rawJSON.data_radio_transmission, tid)
 	})
 	.then(function(){
 		return res.sendStatus(200)
@@ -77,7 +85,7 @@ function saveRaw(rawJSON) {
 }
 
 function savePreamble(preamble, tid) {
-	promises.push(Preamble.build({
+	return (Preamble.build({
 		callsign: preamble.callsign,
 		timestamp: preamble.timestamp,
 		messageAndOpStates: preamble.message_and_op_states,
@@ -88,6 +96,7 @@ function savePreamble(preamble, tid) {
 }
 
 function saveErrorInfo(errorInfo, tid) {
+	var promises = []
 	var errorArray = errorInfo.error
 	for(var i = 0; i < errorArray.length; i++){
 		promises.push(ErrorInfo.build({
@@ -96,40 +105,45 @@ function saveErrorInfo(errorInfo, tid) {
 			tid: tid
 		}).save())
 	}
+	return Promise.all(promises)
 }
 
 function saveCurrentData(currentData, tid) {
+	var promises = []
+	
 	// Battery Data
-	saveCurrBatteryChargingAnalogVoltage(currentData.battery_charging_analog_voltages, tid)
-	saveCurrBatteryChargingDigitalSignal(currentData.battery_charging_digital_signals, tid)
-    saveCurrBatteryTemperature(currentData.battery_temperature, tid)
+	saveCurrBatteryChargingAnalogVoltage(currentData.battery_charging_analog_voltages, tid, promises)
+	saveCurrBatteryChargingDigitalSignal(currentData.battery_charging_digital_signals, tid, promises)
+    saveCurrBatteryTemperature(currentData.battery_temperature, tid, promises)
 
     // IMU Data
-    saveCurrImuAccelerometer(currentData.imu_accelerometer, tid)
-    saveCurrImuGyroscope(currentData.imu_gyroscope, tid)
-    saveCurrImuMagnetometer(currentData.imu_magnetometer, tid)
+    saveCurrImuAccelerometer(currentData.imu_accelerometer, tid, promises)
+    saveCurrImuGyroscope(currentData.imu_gyroscope, tid, promises)
+    saveCurrImuMagnetometer(currentData.imu_magnetometer, tid, promises)
 
     // Lastflash Data
-    saveCurrLastFlashLedCurrent(currentData.last_flash_led_current, tid)
-    saveCurrLastFlashLedTemperature(currentData.last_flash_led_temperature, tid)
-    saveCurrLastFlashLifepoCurrent(currentData.last_flash_lifepo_currents, tid)
+    saveCurrLastFlashLedCurrent(currentData.last_flash_led_current, tid, promises)
+    saveCurrLastFlashLedTemperature(currentData.last_flash_led_temperature, tid, promises)
+    saveCurrLastFlashLifepoCurrent(currentData.last_flash_lifepo_currents, tid, promises)
 
     // LiON Data
-    saveCurrLionCurrent(currentData.lion_currents, tid)
-    saveCurrLionDischarge(currentData.lion_discharge, tid)
-    saveCurrLionVoltage(currentData.lion_voltages, tid)
+    saveCurrLionCurrent(currentData.lion_currents, tid, promises)
+    saveCurrLionDischarge(currentData.lion_discharge, tid, promises)
+    saveCurrLionVoltage(currentData.lion_voltages, tid, promises)
 
     // Radio Data
-	saveCurrRadioTemperature(currentData.radio_temperature, tid)
-	saveCurrRadioVoltage(currentData.radio_voltage, tid)
+	saveCurrRadioTemperature(currentData.radio_temperature, tid, promises)
+	saveCurrRadioVoltage(currentData.radio_voltage, tid, promises)
 
 	// Other
-	saveCurrDigitalOutput(currentData.digital_output, tid)
-	saveCurrIrReading(currentData.ir_readings, tid)
-	saveCurrPhotoDiode(currentData.photo_diode, tid)
+	saveCurrDigitalOutput(currentData.digital_output, tid, promises)
+	saveCurrIrReading(currentData.ir_readings, tid, promises)
+	saveCurrPhotoDiode(currentData.photo_diode, tid, promises)
+
+	return Promise.all(promises)
 }
 
-function saveCurrBatteryChargingAnalogVoltage(voltages, tid) {
+function saveCurrBatteryChargingAnalogVoltage(voltages, tid, promises) {
 	for(var i = 0; i < voltages.length; i++){
 		promises.push(CurrBatteryChargingAnalogVoltage.build({
 			index: i,
@@ -139,7 +153,7 @@ function saveCurrBatteryChargingAnalogVoltage(voltages, tid) {
 	}
 }
 
-function saveCurrBatteryChargingDigitalSignal(signals, tid) {
+function saveCurrBatteryChargingDigitalSignal(signals, tid, promises) {
 	for(var i = 0; i < signals.length; i++){
 		promises.push(CurrBatteryChargingDigitalSignal.build({
 			index: i, 
@@ -149,7 +163,7 @@ function saveCurrBatteryChargingDigitalSignal(signals, tid) {
 	}
 }
 
-function saveCurrBatteryTemperature(temperatures, tid) {
+function saveCurrBatteryTemperature(temperatures, tid, promises) {
 	for(var i = 0; i < temperatures.length; i++){
 		promises.push(CurrBatteryTemperature.build({
 			index: i, 
@@ -159,7 +173,7 @@ function saveCurrBatteryTemperature(temperatures, tid) {
 	}
 }
 
-function saveCurrImuAccelerometer(accelerometer, tid) {
+function saveCurrImuAccelerometer(accelerometer, tid, promises) {
 	for(var i = 0; i < accelerometer.length; i++){
 		promises.push(CurrImuAccelerometer.build({
 			index: i, 
@@ -169,7 +183,7 @@ function saveCurrImuAccelerometer(accelerometer, tid) {
 	}
 }
 
-function saveCurrImuGyroscope(gyroscope, tid) {
+function saveCurrImuGyroscope(gyroscope, tid, promises) {
 	for(var i = 0; i < gyroscope.length; i++){
 		promises.push(CurrImuGyroscope.build({
 			index: i, 
@@ -179,7 +193,7 @@ function saveCurrImuGyroscope(gyroscope, tid) {
 	}
 }
 
-function saveCurrImuMagnetometer(magnetometer, tid) {
+function saveCurrImuMagnetometer(magnetometer, tid, promises) {
 	for(var i = 0; i < magnetometer.length; i++){
 		promises.push(CurrImuMagnetometer.build({
 			index: i, 
@@ -189,7 +203,7 @@ function saveCurrImuMagnetometer(magnetometer, tid) {
 	}
 }
 
-function saveCurrLastFlashLedCurrent(lastFlashLedCurrent, tid) {
+function saveCurrLastFlashLedCurrent(lastFlashLedCurrent, tid, promises) {
 	for(var i = 0; i < lastFlashLedCurrent.length; i++){
 		promises.push(CurrLastFlashLedCurrent.build({
 			index: i, 
@@ -199,7 +213,7 @@ function saveCurrLastFlashLedCurrent(lastFlashLedCurrent, tid) {
 	}
 }
 
-function saveCurrLastFlashLedCurrent(lastFlashLedCurrent, tid) {
+function saveCurrLastFlashLedCurrent(lastFlashLedCurrent, tid, promises) {
 	for(var i = 0; i < lastFlashLedCurrent.length; i++){
 		promises.push(CurrLastFlashLedCurrent.build({
 			index: i, 
@@ -209,7 +223,7 @@ function saveCurrLastFlashLedCurrent(lastFlashLedCurrent, tid) {
 	}
 }
 
-function saveCurrLastFlashLedTemperature(temperature, tid) {
+function saveCurrLastFlashLedTemperature(temperature, tid, promises) {
 	for(var i = 0; i < temperature.length; i++){
 		promises.push(CurrLastFlashLedTemperature.build({
 			index: i, 
@@ -219,7 +233,7 @@ function saveCurrLastFlashLedTemperature(temperature, tid) {
 	}
 }
 
-function saveCurrLastFlashLifepoCurrent(current, tid) {
+function saveCurrLastFlashLifepoCurrent(current, tid, promises) {
 	for(var i = 0; i < current.length; i++){
 		promises.push(CurrLastFlashLifepoCurrent.build({
 			index: i, 
@@ -229,7 +243,7 @@ function saveCurrLastFlashLifepoCurrent(current, tid) {
 	}
 }
 
-function saveCurrLionCurrent(current, tid) {
+function saveCurrLionCurrent(current, tid, promises) {
 	for(var i = 0; i < current.length; i++){
 		promises.push(CurrLionCurrent.build({
 			index: i, 
@@ -239,7 +253,7 @@ function saveCurrLionCurrent(current, tid) {
 	}
 }
 
-function saveCurrLionCurrent(current, tid) {
+function saveCurrLionCurrent(current, tid, promises) {
 	for(var i = 0; i < current.length; i++){
 		promises.push(CurrLionCurrent.build({
 			index: i, 
@@ -249,7 +263,7 @@ function saveCurrLionCurrent(current, tid) {
 	}
 }
 
-function saveCurrLionDischarge(discharge, tid) {
+function saveCurrLionDischarge(discharge, tid, promises) {
 	for(var i = 0; i < discharge.length; i++){
 		promises.push(CurrLionDischarge.build({
 			index: i, 
@@ -259,7 +273,7 @@ function saveCurrLionDischarge(discharge, tid) {
 	}
 }
 
-function saveCurrLionVoltage(voltage, tid) {
+function saveCurrLionVoltage(voltage, tid, promises) {
 	for(var i = 0; i < voltage.length; i++){
 		promises.push(CurrLionVoltage.build({
 			index: i, 
@@ -269,14 +283,14 @@ function saveCurrLionVoltage(voltage, tid) {
 	}
 }
 
-function saveCurrRadioTemperature(temperature, tid) {
+function saveCurrRadioTemperature(temperature, tid, promises) {
 	promises.push(CurrRadioTemperature.build({
 		temperature: temperature, 
 		tid: tid
 	}).save())
 }
 
-function saveCurrRadioVoltage(voltage, tid) {
+function saveCurrRadioVoltage(voltage, tid, promises) {
 	for(var i = 0; i < voltage.length; i++){
 		promises.push(CurrRadioVoltage.build({
 			index: i, 
@@ -286,7 +300,7 @@ function saveCurrRadioVoltage(voltage, tid) {
 	}
 }
 
-function saveCurrDigitalOutput(digitalOutput, tid) {
+function saveCurrDigitalOutput(digitalOutput, tid, promises) {
 	promises.push(CurrDigitalOutput.build({
 		index: 0, //NOTE: WHAT IS THIS INDEX FOR?
 		output: digitalOutput,
@@ -294,7 +308,7 @@ function saveCurrDigitalOutput(digitalOutput, tid) {
 	}).save())
 }
 
-function saveCurrIrReading(reading, tid) {
+function saveCurrIrReading(reading, tid, promises) {
 	for(var i = 0; i < reading.length; i++){
 		promises.push(CurrIrReading.build({
 			index: i, 
@@ -304,7 +318,7 @@ function saveCurrIrReading(reading, tid) {
 	}
 }
 
-function saveCurrPhotoDiode(diode, tid) {
+function saveCurrPhotoDiode(diode, tid, promises) {
 	for(var i = 0; i < diode.length; i++){
 		promises.push(CurrPhotoDiode.build({
 			index: i, 
@@ -315,15 +329,17 @@ function saveCurrPhotoDiode(diode, tid) {
 }
 
 function saveAttitudeData(attitude, tid) {
-	saveAttitudeImuAccelerometer(attitude.imu_accelerometer, tid, attitude.timestamp)
-	saveAttitudeImuGyroscope(attitude.imu_gyroscope, tid, attitude.timestamp)
-	saveAttitudeImuMagnetometer(attitude.imu_magnetometer, tid, attitude.timestamp)
-	saveAttitudeIrSensor(attitude.ir_sensor, tid, attitude.timestamp)
-	saveAttitudeMagnetometer(attitude.magnetometer, tid, attitude.timestamp)
-	saveAttitudePhotoDiode(attitude.photo_diode, tid, attitude.timestamp)
+	var promises = []
+	saveAttitudeImuAccelerometer(attitude.imu_accelerometer, tid, attitude.timestamp, promises)
+	saveAttitudeImuGyroscope(attitude.imu_gyroscope, tid, attitude.timestamp, promises)
+	saveAttitudeImuMagnetometer(attitude.imu_magnetometer, tid, attitude.timestamp, promises)
+	saveAttitudeIrSensor(attitude.ir_sensor, tid, attitude.timestamp, promises)
+	saveAttitudeMagnetometer(attitude.magnetometer, tid, attitude.timestamp, promises)
+	saveAttitudePhotoDiode(attitude.photo_diode, tid, attitude.timestamp, promises)
+	return Promise.all(promises)
 }
 
-function saveAttitudeImuAccelerometer(accelerometer, tid, timestamp) {
+function saveAttitudeImuAccelerometer(accelerometer, tid, timestamp, promises) {
 	for(var i = 0; i < accelerometer.length; i++){
 		promises.push(AttitudeImuAccelerometer.build({
 			index: i, 
@@ -334,7 +350,7 @@ function saveAttitudeImuAccelerometer(accelerometer, tid, timestamp) {
 	}
 }
 
-function saveAttitudeImuGyroscope(gyroscope, tid, timestamp) {
+function saveAttitudeImuGyroscope(gyroscope, tid, timestamp, promises) {
 	for(var i = 0; i < gyroscope.length; i++){
 		promises.push(AttitudeImuGyroscope.build({
 			index: i, 
@@ -345,7 +361,7 @@ function saveAttitudeImuGyroscope(gyroscope, tid, timestamp) {
 	}
 }
 
-function saveAttitudeImuMagnetometer(magnetometer, tid, timestamp) {
+function saveAttitudeImuMagnetometer(magnetometer, tid, timestamp, promises) {
 	for(var i = 0; i < magnetometer.length; i++){
 		promises.push(AttitudeImuMagnetometer.build({
 			index: i, 
@@ -356,7 +372,7 @@ function saveAttitudeImuMagnetometer(magnetometer, tid, timestamp) {
 	}
 }
 
-function saveAttitudeIrSensor(sensor, tid, timestamp) {
+function saveAttitudeIrSensor(sensor, tid, timestamp, promises) {
 	for(var i = 0; i < sensor.length; i++){
 		promises.push(AttitudeIrSensor.build({
 			index: i, 
@@ -367,7 +383,7 @@ function saveAttitudeIrSensor(sensor, tid, timestamp) {
 	}
 }
 
-function saveAttitudeMagnetometer(magnetometer, tid, timestamp) {
+function saveAttitudeMagnetometer(magnetometer, tid, timestamp, promises) {
 	promises.push(AttitudeMagnetometer.build({
 		magnetometer: magnetometer,
 		tid: tid,
@@ -375,7 +391,7 @@ function saveAttitudeMagnetometer(magnetometer, tid, timestamp) {
 	}).save())
 }
 
-function saveAttitudePhotoDiode(diode, tid, timestamp) {
+function saveAttitudePhotoDiode(diode, tid, timestamp, promises) {
 	for(var i = 0; i < diode.length; i++){
 		promises.push(AttitudePhotoDiode.build({
 			index: i, 
@@ -387,12 +403,14 @@ function saveAttitudePhotoDiode(diode, tid, timestamp) {
 }
 
 function saveDataFlashBurst(flashBurst, tid) {
-	saveFlashBurstLifepoCurrent(flashBurst.lifepo_current, tid, flashBurst.timestamp)
-	saveFlashBurstLifepoVoltage(flashBurst.lifepo_voltage, tid, flashBurst.timestamp)
-	saveFlashBurstTemperature(flashBurst.temperature, tid, flashBurst.timestamp)
+	var promises = []
+	saveFlashBurstLifepoCurrent(flashBurst.lifepo_current, tid, flashBurst.timestamp, promises)
+	saveFlashBurstLifepoVoltage(flashBurst.lifepo_voltage, tid, flashBurst.timestamp, promises)
+	saveFlashBurstTemperature(flashBurst.temperature, tid, flashBurst.timestamp, promises)
+	return Promise.all(promises)
 }
 
-function saveFlashBurstLifepoCurrent(current, tid, timestamp) {
+function saveFlashBurstLifepoCurrent(current, tid, timestamp, promises) {
 	for(var i = 0; i < current.length; i++){
 		promises.push(FlashBurstLifepoCurrent.build({
 			index: i, 
@@ -403,7 +421,7 @@ function saveFlashBurstLifepoCurrent(current, tid, timestamp) {
 	}
 }
 
-function saveFlashBurstLifepoVoltage(voltage, tid, timestamp) {
+function saveFlashBurstLifepoVoltage(voltage, tid, timestamp, promises) {
 	for(var i = 0; i < voltage.length; i++){
 		promises.push(FlashBurstLifepoVoltage.build({
 			index: i, 
@@ -414,7 +432,7 @@ function saveFlashBurstLifepoVoltage(voltage, tid, timestamp) {
 	}
 }
 
-function saveFlashBurstTemperature(temperature, tid, timestamp) {
+function saveFlashBurstTemperature(temperature, tid, timestamp, promises) {
 	for(var i = 0; i < temperature.length; i++){
 		promises.push(FlashBurstTemperature.build({
 			index: i, 
@@ -426,12 +444,14 @@ function saveFlashBurstTemperature(temperature, tid, timestamp) {
 }
 
 function saveDataRadioTransmission(radio, tid) {
+	var promises = []
 	saveRadioTransmissionCurrent(radio.lion_currents, tid, radio.timestamp, promises)
 	saveRadioTransmissionVoltage(radio.lion_voltages, tid, radio.timestamp, promises)
 	saveRadioTransmissionTemperature(radio.radio_temperature, tid, radio.timestamp, promises)
+	return Promise.all(promises)
 }
 
-function saveRadioTransmissionCurrent(current, tid, timestamp) {
+function saveRadioTransmissionCurrent(current, tid, timestamp, promises) {
 	for(var i = 0; i < current.length; i++){
 		promises.push(RadioTransmissionCurrent.build({
 			index: i, 
@@ -442,7 +462,7 @@ function saveRadioTransmissionCurrent(current, tid, timestamp) {
 	}
 }
 
-function saveRadioTransmissionVoltage(voltage, tid, timestamp) {
+function saveRadioTransmissionVoltage(voltage, tid, timestamp, promises) {
 	for(var i = 0; i < voltage.length; i++){
 		promises.push(RadioTransmissionLionVoltage.build({
 			index: i, 
@@ -453,7 +473,7 @@ function saveRadioTransmissionVoltage(voltage, tid, timestamp) {
 	}
 }
 
-function saveRadioTransmissionTemperature(temperature, tid, timestamp) {
+function saveRadioTransmissionTemperature(temperature, tid, timestamp, promises) {
 	for(var i = 0; i < temperature.length; i++){
 		promises.push(RadioTransmissionTemperature.build({
 			index: i, 
