@@ -1,4 +1,4 @@
-var FlashBurstLifepoCurrent = require('../../database/models/dataFlashBurst/flashBurstLifepoCurrent');
+var FlashBurstLifepoCurrent = require('../../../database/models/dataFlashBurst/flashBurstLifepoCurrent');
 
 var exportObj = {};
 
@@ -18,4 +18,3 @@ exportObj.addFlashBurstLifepoCurrent = function (flashBurstLifepoCurrent){
 };
 
 module.exports = exportObj;
-
