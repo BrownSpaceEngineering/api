@@ -1,4 +1,4 @@
-var CurrLastFlashLedTemperature = require('../../../database/models/currentData/lastFlash/currLastFlashLedTemperature');
+var CurrLastFlashLedTemperature = require('../../../../database/models/currentData/lastFlash/currLastFlashLedTemperature');
 
 var exportObj = {};
 
