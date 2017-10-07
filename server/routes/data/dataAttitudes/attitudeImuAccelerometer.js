@@ -3,8 +3,8 @@ var AttitudeImuAccelerometer = require('../common/dataAttitude/attitudeImuAccele
 
 router.get('/', function (req, res, next){
   AttitudeImuAccelerometer.findAllAttitudeImuAccelerometer()
-  .then(function (attitudeImuAccelerometer){
-    res.send(attitudeImuAccelerometer);
+  .then(function (attitudeImuAccelerometers){
+    res.send(attitudeImuAccelerometers);
   })
   .catch(function (err){
     console.error(err);
