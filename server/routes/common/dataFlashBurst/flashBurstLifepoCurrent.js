@@ -18,4 +18,3 @@ exportObj.addFlashBurstLifepoCurrent = function (flashBurstLifepoCurrent){
 };
 
 module.exports = exportObj;
-
