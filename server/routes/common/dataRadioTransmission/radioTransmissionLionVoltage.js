@@ -1,4 +1,4 @@
-var RadioTransmissionLionVoltage = require('../../../database/models/dataRadioTransmission/radioTransmissionLionVoltage');
+var RadioTransmissionLionVoltage = require('../../../../database/models/dataRadioTransmission/radioTransmissionLionVoltage');
 
 var exportObj = {};
 
@@ -18,4 +18,3 @@ exportObj.addRadioTransmissionLionVoltage = function (radioTransmissionLionVolta
 };
 
 module.exports = exportObj;
-

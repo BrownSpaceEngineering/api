@@ -1,4 +1,4 @@
-var RadioTransmissionCurrent = require('../../../database/models/dataRadioTransmission/radioTransmissionCurrent');
+var RadioTransmissionCurrent = require('../../../../database/models/dataRadioTransmission/radioTransmissionCurrent');
 
 var exportObj = {};
 
@@ -18,4 +18,3 @@ exportObj.addRadioTransmissionCurrent = function (radioTransmissionCurrent){
 };
 
 module.exports = exportObj;
-

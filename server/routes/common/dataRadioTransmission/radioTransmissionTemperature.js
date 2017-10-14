@@ -1,4 +1,4 @@
-var RadioTransmissionTemperature = require('../../../database/models/dataRadioTransmission/radioTransmissionTemperature');
+var RadioTransmissionTemperature = require('../../../../database/models/dataRadioTransmission/radioTransmissionTemperature');
 
 var exportObj = {};
 
@@ -18,4 +18,3 @@ exportObj.addRadioTransmissionTemperature = function (radioTransmissionTemperatu
 };
 
 module.exports = exportObj;
-
