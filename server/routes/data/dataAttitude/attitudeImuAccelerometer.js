@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var AttitudeImuAccelerometer = require('../common/dataAttitude/attitudeImuAccelerometer');
+var AttitudeImuAccelerometer = require('../../common/dataAttitude/attitudeImuAccelerometer');
 
 router.get('/', function (req, res, next){
   AttitudeImuAccelerometer.findAllAttitudeImuAccelerometer()
@@ -22,3 +22,5 @@ router.get('/:id', function (req, res, next){
     res.status(500).send(err);
   });
 });
+
+module.exports = router;

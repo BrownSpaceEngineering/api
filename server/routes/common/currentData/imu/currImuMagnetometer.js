@@ -1,4 +1,4 @@
-var CurrImuMagnetometer = require('../../../database/models/currentData/imu/currImuMagnetometer');
+var CurrImuMagnetometer = require('../../../../database/models/currentData/imu/currImuMagnetometer');
 
 var exportObj = {};
 

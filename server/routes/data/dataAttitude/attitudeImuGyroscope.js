@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var AttitudeImuGyroscope = require('../common/dataAttitude/attitudeImuGyroscope');
+var AttitudeImuGyroscope = require('../../common/dataAttitude/attitudeImuGyroscope');
 
 router.get('/', function (req, res, next){
   AttitudeImuGyroscope.findAllAttitudeImuGyroscope()
@@ -22,3 +22,5 @@ router.get('/:id', function (req, res, next){
     res.status(500).send(err);
   });
 });
+
+module.exports = router;

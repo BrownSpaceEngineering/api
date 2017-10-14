@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var AttitudePhotoDiode = require('../common/dataAttitude/AttitudePhotoDiode');
+var AttitudePhotoDiode = require('../../common/dataAttitude/attitudePhotoDiode');
 
 router.get('/', function (req, res, next){
   AttitudePhotoDiode.findAllAttitudePhotoDiode()
@@ -22,3 +22,5 @@ router.get('/:id', function (req, res, next){
     res.status(500).send(err);
   });
 });
+
+module.exports = router;

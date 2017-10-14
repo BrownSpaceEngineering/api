@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var AttitudeIrSensor = require('../common/dataAttitude/AttitudeIrSensor');
+var AttitudeIrSensor = require('../../common/dataAttitude/attitudeIrSensor');
 
 router.get('/', function (req, res, next){
   AttitudeIrSensor.findAllAttitudeIrSensor()
@@ -22,3 +22,5 @@ router.get('/:id', function (req, res, next){
     res.status(500).send(err);
   });
 });
+
+module.exports = router;

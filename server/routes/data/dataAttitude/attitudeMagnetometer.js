@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var AttitudeMagnetometer = require('../common/dataAttitude/AttitudeMagnetometer');
+var AttitudeMagnetometer = require('../../common/dataAttitude/attitudeMagnetometer');
 
 router.get('/', function (req, res, next){
   AttitudeMagnetometer.findAllAttitudeMagnetometer()
@@ -22,3 +22,5 @@ router.get('/:id', function (req, res, next){
     res.status(500).send(err);
   });
 });
+
+module.exports = router;
