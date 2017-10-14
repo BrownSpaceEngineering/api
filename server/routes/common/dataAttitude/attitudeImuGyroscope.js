@@ -1,4 +1,4 @@
-var AttitudeImuGyroscope = require('../../database/models/dataAttitude/attitudeImuGyroscope');
+var AttitudeImuGyroscope = require('../../../database/models/dataAttitude/attitudeImuGyroscope');
 
 var exportObj = {};
 

@@ -1,4 +1,4 @@
-var AttitudeImuMagnetometer = require('../../database/models/dataAttitude/attitudeImuMagnetometer');
+var AttitudeImuMagnetometer = require('../../../database/models/dataAttitude/attitudeImuMagnetometer');
 
 var exportObj = {};
 

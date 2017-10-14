@@ -1,4 +1,4 @@
-var AttitudeImuAccelerometer = require('../../database/models/dataAttitude/attitudeImuAccelerometer');
+var AttitudeImuAccelerometer = require('../../../database/models/dataAttitude/attitudeImuAccelerometer');
 
 var exportObj = {};
 

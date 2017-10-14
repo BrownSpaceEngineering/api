@@ -1,10 +1,10 @@
 var router = require('express').Router();
-var Raw = require('../common/raw');
+var AttitudeIrSensor = require('../../common/dataAttitude/attitudeIrSensor');
 
 router.get('/', function (req, res, next){
-  Raw.findAllRaw()
-  .then(function (raws){
-    res.send(raws);
+  AttitudeIrSensor.findAllAttitudeIrSensor()
+  .then(function (attitudeIrSensors){
+    res.send(attitudeIrSensors);
   })
   .catch(function (err){
     console.error(err);
@@ -13,9 +13,9 @@ router.get('/', function (req, res, next){
 });
 
 router.get('/:id', function (req, res, next){
-  Raw.getRawById(req.params.id)
-  .then(function (raw){
-    res.send(raw);
+  AttitudeIrSensor.getAttitudeIrSensorById(req.params.id)
+  .then(function (attitudeIrSensor){
+    res.send(attitudeIrSensor);
   })
   .catch(function (err){
     console.error(err);
