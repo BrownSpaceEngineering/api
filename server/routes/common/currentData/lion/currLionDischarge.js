@@ -1,4 +1,4 @@
-var CurrLionDischarge = require('../../../database/models/currentData/lion/currLionDischarge');
+var CurrLionDischarge = require('../../../../database/models/currentData/lion/currLionDischarge');
 
 var exportObj = {};
 

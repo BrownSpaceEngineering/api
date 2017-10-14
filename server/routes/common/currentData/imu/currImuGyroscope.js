@@ -1,4 +1,4 @@
-var CurrImuGyroscope = require('../../../database/models/currentData/imu/currImuGyroscope');
+var CurrImuGyroscope = require('../../../../database/models/currentData/imu/currImuGyroscope');
 
 var exportObj = {};
 
