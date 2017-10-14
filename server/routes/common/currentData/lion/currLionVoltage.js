@@ -1,4 +1,4 @@
-var CurrLionVoltage = require('../../../database/models/currentData/lion/currLionVoltage');
+var CurrLionVoltage = require('../../../../database/models/currentData/lion/currLionVoltage');
 
 var exportObj = {};
 

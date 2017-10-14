@@ -1,4 +1,4 @@
-var CurrIrReading = require('../../database/models/currentData/currIrReading');
+var CurrIrReading = require('../../../database/models/currentData/currIrReading');
 
 var exportObj = {};
 

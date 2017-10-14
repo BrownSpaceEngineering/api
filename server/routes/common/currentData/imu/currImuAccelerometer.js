@@ -1,4 +1,4 @@
-var CurrImuAccelerometer = require('../../../database/models/currentData/imu/currImuAccelerometer');
+var CurrImuAccelerometer = require('../../../../database/models/currentData/imu/currImuAccelerometer');
 
 var exportObj = {};
 

@@ -1,4 +1,4 @@
-var CurrBatteryTemperature = require('../../../database/models/currentData/battery/currBatteryTemperature');
+var CurrBatteryTemperature = require('../../../../database/models/currentData/battery/currBatteryTemperature');
 
 var exportObj = {};
 

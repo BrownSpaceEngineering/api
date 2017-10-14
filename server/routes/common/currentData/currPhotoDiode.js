@@ -1,4 +1,4 @@
-var CurrPhotoDiode = require('../../database/models/currentData/currPhotoDiode');
+var CurrPhotoDiode = require('../../../database/models/currentData/currPhotoDiode');
 
 var exportObj = {};
 

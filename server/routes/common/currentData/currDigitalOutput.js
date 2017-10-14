@@ -1,4 +1,4 @@
-var CurrDigitalOutput = require('../../database/models/currentData/currDigitalOutput');
+var CurrDigitalOutput = require('../../../database/models/currentData/currDigitalOutput');
 
 var exportObj = {};
 

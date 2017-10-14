@@ -1,4 +1,4 @@
-var FlashBurstTemperature = require('../../database/models/dataFlashBurst/flashBurstTemperature');
+var FlashBurstTemperature = require('../../../database/models/dataFlashBurst/flashBurstTemperature');
 
 var exportObj = {};
 
