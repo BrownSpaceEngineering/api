@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var RadioTransmissionCurrent = require('../common/dataRadioTransmission/radioTransmissionCurrent');
+var RadioTransmissionCurrent = require('../../common/dataRadioTransmission/radioTransmissionCurrent');
 
 
 router.get('/', function (req, res, next){
@@ -23,3 +23,5 @@ router.get('/:id', function (req, res, next){
     res.status(500).send(err);
   });
 });
+
+module.exports = router;

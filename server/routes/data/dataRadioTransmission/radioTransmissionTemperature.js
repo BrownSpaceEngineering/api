@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var RadioTransmissionTemperature = require('../common/dataRadioTransmission/radioTransmissionTemperature');
+var RadioTransmissionTemperature = require('../../common/dataRadioTransmission/radioTransmissionTemperature');
 
 router.get('/', function (req, res, next){
   RadioTransmissionTemperature.findAllRadioTransmissionTemperature()
@@ -22,3 +22,5 @@ router.get('/:id', function (req, res, next){
     res.status(500).send(err);
   });
 });
+
+module.exports = router;

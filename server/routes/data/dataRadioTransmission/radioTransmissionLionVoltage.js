@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var RadioTransmissionLionVoltage = require('../common/dataRadioTransmission/radioTransmissionLionVoltage');
+var RadioTransmissionLionVoltage = require('../../common/dataRadioTransmission/radioTransmissionLionVoltage');
 
 router.get('/', function (req, res, next){
   RadioTransmissionLionVoltage.findAllRadioTransmissionLionVoltage()
@@ -22,3 +22,5 @@ router.get('/:id', function (req, res, next){
     res.status(500).send(err);
   });
 });
+
+module.exports = router;
