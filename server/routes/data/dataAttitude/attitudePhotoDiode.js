@@ -1,10 +1,10 @@
 var router = require('express').Router();
-var Raw = require('../common/raw');
+var AttitudePhotoDiode = require('../../common/dataAttitude/attitudePhotoDiode');
 
 router.get('/', function (req, res, next){
-  Raw.findAllRaw()
-  .then(function (raws){
-    res.send(raws);
+  AttitudePhotoDiode.findAllAttitudePhotoDiode()
+  .then(function (attitudePhotoDiodes){
+    res.send(attitudePhotoDiodes);
   })
   .catch(function (err){
     console.error(err);
@@ -13,9 +13,9 @@ router.get('/', function (req, res, next){
 });
 
 router.get('/:id', function (req, res, next){
-  Raw.getRawById(req.params.id)
-  .then(function (raw){
-    res.send(raw);
+  AttitudePhotoDiode.getAttitudePhotoDiodeById(req.params.id)
+  .then(function (attitudePhotoDiode){
+    res.send(attitudePhotoDiode);
   })
   .catch(function (err){
     console.error(err);

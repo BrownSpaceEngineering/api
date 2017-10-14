@@ -1,4 +1,4 @@
-var CurrRadioVoltage = require('../../../database/models/currentData/radio/currRadioVoltage');
+var CurrRadioVoltage = require('../../../../database/models/currentData/radio/currRadioVoltage');
 
 var exportObj = {};
 

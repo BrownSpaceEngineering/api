@@ -1,4 +1,4 @@
-var FlashBurstLifepoVoltage = require('../../database/models/dataFlashBurst/flashBurstLifepoVoltage');
+var FlashBurstLifepoVoltage = require('../../../database/models/dataFlashBurst/flashBurstLifepoVoltage');
 
 var exportObj = {};
 

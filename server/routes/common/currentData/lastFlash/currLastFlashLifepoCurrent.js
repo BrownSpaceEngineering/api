@@ -1,4 +1,4 @@
-var CurrLastFlashLifepoCurrent = require('../../../database/models/currentData/lastFlash/currLastFlashLifepoCurrent');
+var CurrLastFlashLifepoCurrent = require('../../../../database/models/currentData/lastFlash/currLastFlashLifepoCurrent');
 
 var exportObj = {};
 

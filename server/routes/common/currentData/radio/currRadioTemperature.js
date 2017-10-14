@@ -1,4 +1,4 @@
-var CurrRadioTemperature = require('../../../database/models/currentData/radio/currRadioTemperature');
+var CurrRadioTemperature = require('../../../../database/models/currentData/radio/currRadioTemperature');
 
 var exportObj = {};
 

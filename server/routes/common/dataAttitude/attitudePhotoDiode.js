@@ -1,4 +1,4 @@
-var AttitudePhotoDiode = require('../../database/models/dataAttitude/attitudePhotoDiode');
+var AttitudePhotoDiode = require('../../../database/models/dataAttitude/attitudePhotoDiode');
 
 var exportObj = {};
 

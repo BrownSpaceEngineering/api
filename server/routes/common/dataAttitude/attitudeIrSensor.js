@@ -1,4 +1,4 @@
-var AttitudeIrSensor = require('../../database/models/dataAttitude/attitudeIrSensor');
+var AttitudeIrSensor = require('../../../database/models/dataAttitude/attitudeIrSensor');
 
 var exportObj = {};
 

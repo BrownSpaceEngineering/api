@@ -1,4 +1,4 @@
-var CurrLastFlashLedCurrent = require('../../../database/models/currentData/lastFlash/currLastFlashLedCurrent');
+var CurrLastFlashLedCurrent = require('../../../../database/models/currentData/lastFlash/currLastFlashLedCurrent');
 
 var exportObj = {};
 
