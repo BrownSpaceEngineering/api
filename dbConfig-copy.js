@@ -1,5 +1,7 @@
+// Copy this file and remove "-copy" from the file name to use this
+// file to source database configuration 
 dialect = "postgres"
-host = "localhost"
+host = "ff"
 port = "5432"
 username = "user"
 password = "password"
