@@ -31,5 +31,12 @@
     "pg-hstore": "^2.3.2",
     "pg-native": "^1.10.0",
     "sequelize": "^3.27.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-spies": "^0.7.1",
+    "chai-string": "^1.4.0",
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
   }
 }
