@@ -18,4 +18,3 @@ exportObj.addRadioTransmissionLionVoltage = function (radioTransmissionLionVolta
 };
 
 module.exports = exportObj;
-

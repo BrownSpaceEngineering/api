@@ -18,4 +18,3 @@ exportObj.addRadioTransmissionTemperature = function (radioTransmissionTemperatu
 };
 
 module.exports = exportObj;
-

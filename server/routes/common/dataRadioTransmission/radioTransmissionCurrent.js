@@ -18,4 +18,3 @@ exportObj.addRadioTransmissionCurrent = function (radioTransmissionCurrent){
 };
 
 module.exports = exportObj;
-
