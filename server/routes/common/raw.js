@@ -1,4 +1,4 @@
-var Raw = require('../../database/models/raw');
+var Raw = require('../../database/models/raw.js');
 
 var exportObj = {};
 
