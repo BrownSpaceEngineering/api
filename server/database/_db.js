@@ -1,6 +1,9 @@
 var Sequelize = require('sequelize');
+var config = require('../../dbConfig.js');
 
-module.exports = new Sequelize('postgres://localhost:5432/bse_api', {
+var url = config.dialect + "://" + config.username + ":" + config.password + "@" + config.host + ":" + config.port + "/" + config.database;
+
+module.exports = new Sequelize(url, {
   logging: false,
   native: true
 })
