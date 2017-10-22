@@ -1,3 +1,8 @@
+// switch to our TEST DB
+require('dotenv').config({path: '.env.test'});
+
+console.log(process.env);
+
 const chai = require('chai');
 const spies = require('chai-spies');
 chai.use(spies);
@@ -41,16 +46,9 @@ describe('Testing suite capabilities...', function () {
 
 });
 
-const db = require('../server/database/_db');
 
+const db = require('../server/database');
 
-describe('Testing the server...', function () {
-  // Clear the DB
-  before(function(){
-    return db.sync({force: true});
-  })
-
-  // Run test of the tests
-  // require('./models/preamble.test.js');
-  // require('./routes/preamble.test.js');
-});
+// Run test of the tests
+// require('./models/preamble.test.js');
+// require('./routes/preamble.test.js');
