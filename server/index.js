@@ -28,3 +28,4 @@ db.sync()
   });
 });
 
+module.exports = app;

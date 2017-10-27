@@ -25,7 +25,7 @@ describe('Testing suite capabilities...', function () {
 
   it('confirms setTimeout\'s timer accuracy', function (done) {
     let start = new Date();
-    setTimeout(() => {
+    setTimeout(function () {
       let duration = new Date() - start;
       expect(duration).to.be.closeTo(1000, 50);
       done();
