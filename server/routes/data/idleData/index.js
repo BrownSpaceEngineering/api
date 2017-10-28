@@ -7,5 +7,6 @@ router.use('/idleImuTemperature', require('./idleImuTemperature'))
 router.use('/idleIrAmbientTemperature', require('./idleIrAmbientTemperature'))
 router.use('/idleRadioTemperature', require('./idleRadioTemperature'))
 router.use('/idleRadioVoltage', require('./idleRadioVoltage'))
+router.use('/idleRadioCurrent', require('./idleRadioCurrent'))
 
 module.exports = router;

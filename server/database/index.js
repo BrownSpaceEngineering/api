@@ -24,6 +24,7 @@ var AttitudePhotoDiode = require('./models/dataAttitude/attitudePhotoDiode');
 var FlashBurstLifepoCurrent = require('./models/dataFlashBurst/flashBurstLifepoCurrent');
 var FlashBurstLifepoVoltage = require('./models/dataFlashBurst/flashBurstLifepoVoltage');
 var FlashBurstTemperature = require('./models/dataFlashBurst/flashBurstTemperature');
+var FlashBurstLedCurrent = require('./models/dataFlashBurst/flashBurstLedCurrent');
 
 var FlashCompLedCurrent = require('./models/dataFlashComparison/flashCompLedCurrent');
 var FlashCompLedTemperature = require('./models/dataFlashComparison/flashCompLedTemperature');
@@ -37,6 +38,7 @@ var IdleImuTemperature = require('./models/idleData/idleImuTemperature');
 var IdleIrAmbientTemperature = require('./models/idleData/idleIrAmbientTemperature');
 var IdleRadioTemperature = require('./models/idleData/idleRadioTemperature');
 var IdleRadioVoltage = require('./models/idleData/idleRadioVoltage');
+var IdleRadioCurrent = require('./models/idleData/idleRadioCurrent');
 
 
 
@@ -58,6 +60,7 @@ AttitudePhotoDiode.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 FlashBurstLifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 FlashBurstLifepoVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 FlashBurstTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+FlashBurstLedCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
 FlashCompLedCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 FlashCompLedTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
@@ -71,3 +74,4 @@ IdleImuTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 IdleIrAmbientTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 IdleRadioTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 IdleRadioVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+IdleRadioCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});

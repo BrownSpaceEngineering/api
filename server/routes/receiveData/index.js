@@ -19,6 +19,7 @@ var AttitudeIrTemperature = require('./../common/dataAttitude/attitudeIrTemperat
 var AttitudePhotoDiode = require('./../common/dataAttitude/attitudePhotoDiode.js')
 
 //dataFlashBurst
+var FlashBurstLedCurrent = require('./../common/dataFlashBurst/flashBurstLedCurrent.js')
 var FlashBurstLifepoCurrent = require('./../common/dataFlashBurst/flashBurstLifepoCurrent.js')
 var FlashBurstLifepoVoltage = require('./../common/dataFlashBurst/flashBurstLifepoVoltage.js')
 var FlashBurstTemperature = require('./../common/dataFlashBurst/flashBurstTemperature.js')
@@ -35,6 +36,7 @@ var Idle5VRailVoltage = require('./../common/idleData/idle5VRailVoltage.js')
 var IdleBatteryTemperature = require('./../common/idleData/idleBatteryTemperature.js')
 var IdleImuTemperature = require('./../common/idleData/idleImuTemperature.js')
 var IdleIrAmbientTemperature = require('./../common/idleData/idleIrAmbientTemperature.js')
+var IdleRadioCurrent = require('./../common/idleData/idleRadioCurrent.js')
 var IdleRadioTemperature = require('./../common/idleData/idleRadioTemperature.js')
 var IdleRadioVoltage = require('./../common/idleData/idleRadioVoltage.js')
 
@@ -270,7 +272,10 @@ function saveAttitudePhotoDiode(diode, tid, timestamp) {
 }
 
 function saveDataFlashBurst(flashBurst, tid) {
-	return saveFlashBurstLifepoCurrent(flashBurst.lifepo_current, tid, flashBurst.timestamp)
+	return saveFlashBurstLedCurrent(flashBurst.led_current, tid, flashBurst.timestamp)
+	.then(function() {
+		return saveFlashBurstLifepoCurrent(flashBurst.lifepo_current, tid, flashBurst.timestamp)
+	})
 	.then(function() {
 		return saveFlashBurstLifepoVoltage(flashBurst.lifepo_voltage, tid, flashBurst.timestamp)
 	})
@@ -280,6 +285,19 @@ function saveDataFlashBurst(flashBurst, tid) {
 	.catch(function(error) {
 		throw error
 	})
+}
+
+function saveFlashBurstLedCurrent(current, tid, timestamp) {
+	var promises = []
+	for(var i = 0; i < current.length; i++){
+		promises.push(FlashBurstLedCurrent.addFlashBurstLedCurrent({
+			index: i, 
+			current: current[i],
+			tid: tid,
+			timestamp: timestamp
+		}))
+	}
+	return Promise.all(promises)
 }
 
 function saveFlashBurstLifepoCurrent(current, tid, timestamp) {
@@ -404,6 +422,9 @@ function saveDataIdle(idle, tid) {
 		return saveIdleIrAmbientTemperature(idle.ir_ambient_temperature, tid)
 	})
 	.then(function() {
+		return saveIdleRadioCurrent(idle.radio_current, tid)
+	})
+	.then(function() {
 		return saveIdleRadioTemperature(idle.radio_temperature, tid)
 	})
 	.then(function() {
@@ -457,6 +478,13 @@ function saveIdleIrAmbientTemperature(temperature, tid) {
 		}))
 	}
 	return Promise.all(promises)
+}
+
+function saveIdleRadioCurrent(current, tid) {
+	return IdleRadioCurrent.addIdleRadioCurrent({
+		current: current,
+		tid: tid
+	})
 }
 
 function saveIdleRadioTemperature(temperature, tid) {
