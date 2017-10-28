@@ -4,13 +4,8 @@ var Sequelize = require('sequelize');
 
 var db = require('../../../_db');
 
-module.exports = db.define('currRadioVoltage', {
-  index: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-
-  voltage: {
+module.exports = db.define('idleRadioTemperature', {
+  temperature: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },

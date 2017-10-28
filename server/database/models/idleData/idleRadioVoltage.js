@@ -2,15 +2,10 @@
 
 var Sequelize = require('sequelize');
 
-var db = require('../../_db');
+var db = require('../../../_db');
 
-module.exports = db.define('currPhotoDiode', {
-  index: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-
-  diode: {
+module.exports = db.define('idleRadioVoltage', {
+  voltage: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },

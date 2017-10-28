@@ -2,14 +2,9 @@
 
 var Sequelize = require('sequelize');
 
-var db = require('../../../_db');
+var db = require('../../_db');
 
-module.exports = db.define('currLionVoltage', {
-  index: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-
+module.exports = db.define('idle5VRailVoltage', {
   voltage: {
     type: Sequelize.DOUBLE,
     allowNull: false

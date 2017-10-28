@@ -19,6 +19,7 @@ module.exports = db.define('attitudeImuAccelerometer', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+  
   timestamp: {
     type: Sequelize.INTEGER,
     allowNull: false
