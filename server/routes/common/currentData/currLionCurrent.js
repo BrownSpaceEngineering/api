@@ -1,4 +1,4 @@
-var CurrLionCurrent = require('../../../../database/models/currentData/lion/currLionCurrent');
+var CurrLionCurrent = require('../../../database/models/currentData/currLionCurrent');
 
 var exportObj = {};
 

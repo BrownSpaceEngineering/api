@@ -18,23 +18,19 @@ var CurrDigitalOutput = require('./models/currentData/currDigitalOutput');
 var AttitudeImuAccelerometer = require('./models/dataAttitude/attitudeImuAccelerometer');
 var AttitudeImuGyroscope= require('./models/dataAttitude/attitudeImuGyroscope');
 var AttitudeImuMagnetometer = require('./models/dataAttitude/attitudeImuMagnetometer');
-var AttitudeIrSensor = require('./models/dataAttitude/attitudeIrSensor');
+var AttitudeIrTemperature = require('./models/dataAttitude/attitudeIrTemperature');
 var AttitudePhotoDiode = require('./models/dataAttitude/attitudePhotoDiode');
 
 var FlashBurstLifepoCurrent = require('./models/dataFlashBurst/flashBurstLifepoCurrent');
 var FlashBurstLifepoVoltage = require('./models/dataFlashBurst/flashBurstLifepoVoltage');
 var FlashBurstTemperature = require('./models/dataFlashBurst/flashBurstTemperature');
 
-var RadioTransmissionCurrent = require('./models/dataRadioTransmission/radioTransmissionCurrent');
-var RadioTransmissionLionVoltage = require('./models/dataRadioTransmission/radioTransmissionLionVoltage');
-var RadioTransmissionTemperature = require('./models/dataRadioTransmission/radioTransmissionTemperature');
-
 var FlashCompLedCurrent = require('./models/dataFlashComparison/flashCompLedCurrent');
 var FlashCompLedTemperature = require('./models/dataFlashComparison/flashCompLedTemperature');
 var FlashCompLifepoCurrent = require('./models/dataFlashComparison/flashCompLifepoCurrent');
 var FlashCompLifepoVoltage = require('./models/dataFlashComparison/flashCompLifepoVoltage');
 
-var Idle33RailVoltage = require('./models/idleData/idle33RailVoltage');
+var Idle33VRailVoltage = require('./models/idleData/idle33VRailVoltage');
 var Idle5VRailVoltage = require('./models/idleData/idle5VRailVoltage');
 var IdleBatteryTemperature = require('./models/idleData/idleBatteryTemperature');
 var IdleImuTemperature = require('./models/idleData/idleImuTemperature');
@@ -56,7 +52,7 @@ CurrDigitalOutput.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 AttitudeImuAccelerometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 AttitudeImuGyroscope.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 AttitudeImuMagnetometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-AttitudeIrSensor.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+AttitudeIrTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 AttitudePhotoDiode.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
 FlashBurstLifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
@@ -68,7 +64,7 @@ FlashCompLedTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 FlashCompLifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 FlashCompLifepoVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-Idle33RailVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+Idle33VRailVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 Idle5VRailVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 IdleBatteryTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 IdleImuTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});

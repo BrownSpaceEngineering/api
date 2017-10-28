@@ -1,4 +1,4 @@
-var CurrBatteryChargingDigitalSignal = require('../../../../database/models/currentData/battery/currBatteryChargingDigitalSignal');
+var CurrBatteryChargingDigitalSignal = require('../../../database/models/currentData/currBatteryChargingDigitalSignal');
 
 var exportObj = {};
 

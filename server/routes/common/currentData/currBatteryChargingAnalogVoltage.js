@@ -1,4 +1,4 @@
-var CurrBatteryChargingAnalogVoltage = require('../../../../database/models/currentData/battery/currBatteryChargingAnalogVoltage');
+var CurrBatteryChargingAnalogVoltage = require('../../../database/models/currentData/currBatteryChargingAnalogVoltage');
 
 var exportObj = {};
 
