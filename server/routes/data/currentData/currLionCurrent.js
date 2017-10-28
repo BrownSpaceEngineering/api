@@ -1,9 +1,9 @@
 var router = require('express').Router();
-var CurrRadioTemperature = require('../../../common/currentData/radio/currRadioTemperature');
+var CurrLionCurrent = require('../../common/currentData/currLionCurrent');
 
-//Endpoint: /api/data/currentData/currRadioTemperature
+//Endpoint: /api/data/currentData/currLionCurrent
 router.get('/', function (req, res, next){
-	CurrRadioTemperature.findAllCurrRadioTemperature()
+	CurrLionCurrent.findAllCurrLionCurrent()
     .then(function(readings){
     	res.send(readings);
     })
@@ -13,9 +13,9 @@ router.get('/', function (req, res, next){
 	});
 });
 
-//Endpoint: /api/data/currentData/currRadioTemperature/id
+//Endpoint: /api/data/currentData/currLionCurrent/id
 router.get('/:id', function (req, res, next){
-	CurrRadioTemperature.getCurrRadioTemperatureById(req.params.id)
+	CurrLionCurrent.getCurrLionCurrentById(req.params.id)
     .then(function(reading){
     	res.send(reading);
     })

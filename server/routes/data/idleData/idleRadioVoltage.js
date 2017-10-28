@@ -1,10 +1,11 @@
 var router = require('express').Router();
-var AttitudeIrSensor = require('../../common/dataAttitude/attitudeIrSensor');
+var IdleRadioVoltage = require('../../common/idleData/idleRadioVoltage');
+
 
 router.get('/', function (req, res, next){
-  AttitudeIrSensor.findAllAttitudeIrSensor()
-  .then(function (attitudeIrSensors){
-    res.send(attitudeIrSensors);
+  IdleRadioVoltage.findAllIdleRadioVoltage()
+  .then(function (idleRadioVoltages){
+    res.send(idleRadioVoltages);
   })
   .catch(function (err){
     console.error(err);
@@ -13,9 +14,9 @@ router.get('/', function (req, res, next){
 });
 
 router.get('/:id', function (req, res, next){
-  AttitudeIrSensor.getAttitudeIrSensorById(req.params.id)
-  .then(function (attitudeIrSensor){
-    res.send(attitudeIrSensor);
+  IdleRadioVoltage.getIdleRadioVoltageById(req.params.id)
+  .then(function (idleRadioVoltage){
+    res.send(idleRadioVoltage);
   })
   .catch(function (err){
     console.error(err);

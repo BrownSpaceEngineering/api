@@ -1,9 +1,9 @@
 var router = require('express').Router();
-var CurrRadioVoltage = require('../../../common/currentData/radio/currRadioVoltage');
+var CurrLionVoltage = require('../../common/currentData/currLionVoltage');
 
-//Endpoint: /api/data/currentData/currRadioVoltage
+//Endpoint: /api/data/currentData/currLionVoltage
 router.get('/', function (req, res, next){
-	CurrRadioVoltage.findAllCurrRadioVoltage()
+	CurrLionVoltage.findAllCurrLionVoltage()
     .then(function(readings){
     	res.send(readings);
     })
@@ -13,9 +13,9 @@ router.get('/', function (req, res, next){
 	});
 });
 
-//Endpoint: /api/data/currentData/currRadioVoltage/id
+//Endpoint: /api/data/currentData/currLionVoltage/id
 router.get('/:id', function (req, res, next){
-	CurrRadioVoltage.getCurrRadioVoltageById(req.params.id)
+	CurrLionVoltage.getCurrLionVoltageById(req.params.id)
     .then(function(reading){
     	res.send(reading);
     })
