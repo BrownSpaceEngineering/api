@@ -14,7 +14,7 @@ exportObj.getFlashCompLedTemperatureById = function (id){
 
 // add one
 exportObj.addFlashCompLedTemperature = function (flashCompLedCurrent){
-  return FlashCompLedTemperature.create(radioTransmissionCurrent);
+  return FlashCompLedTemperature.create(flashCompLedCurrent);
 };
 
 module.exports = exportObj;

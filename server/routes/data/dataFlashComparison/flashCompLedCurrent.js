@@ -15,7 +15,7 @@ router.get('/', function (req, res, next){
 
 router.get('/:id', function (req, res, next){
   FlashCompLedCurrent.getFlashCompLedCurrentById(req.params.id)
-  .then(function (flashCompLedCurrents){
+  .then(function (flashCompLedCurrent){
     res.send(flashCompLedCurrent);
   })
   .catch(function (err){

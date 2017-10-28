@@ -4,7 +4,7 @@ var FlashCompLifepoVoltage = require('../../common/dataFlashComparison/flashComp
 router.get('/', function (req, res, next){
   FlashCompLifepoVoltage.findAllFlashCompLifepoVoltage()
   .then(function (flashCompLifepoVoltages){
-    res.send(flashCompLifepoCurrents);
+    res.send(flashCompLifepoVoltages);
   })
   .catch(function (err){
     console.error(err);
@@ -13,9 +13,9 @@ router.get('/', function (req, res, next){
 });
 
 router.get('/:id', function (req, res, next){
-  FlashCompLifepoVoltage.getFFlashCompLifepoVoltageById(req.params.id)
-  .then(function (flashCompLifepoVoltages){
-    res.send(flashCompLifepoCurrent);
+  FlashCompLifepoVoltage.getFlashCompLifepoVoltageById(req.params.id)
+  .then(function (flashCompLifepoVoltage){
+    res.send(flashCompLifepoVoltage);
   })
   .catch(function (err){
     console.error(err);

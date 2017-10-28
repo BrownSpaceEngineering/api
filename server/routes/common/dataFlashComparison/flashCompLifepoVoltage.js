@@ -14,7 +14,7 @@ exportObj.getFlashCompLifepoVoltageById = function (id){
 
 // add one
 exportObj.addFlashCompLifepoVoltage = function (flashCompLifepoVoltage){
-  return FlashCompLifepoVoltage.create(flashCompLifepoCurrent);
+  return FlashCompLifepoVoltage.create(flashCompLifepoVoltage);
 };
 
 module.exports = exportObj;

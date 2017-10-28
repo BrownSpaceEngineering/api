@@ -3,7 +3,7 @@ var FlashCompLedTemperature = require('../../common/dataFlashComparison/flashCom
 
 
 router.get('/', function (req, res, next){
-  FlashCompLedTemperature.findAllFlashCompLedCurrent()
+  FlashCompLedTemperature.findAllFlashCompLedTemperature()
   .then(function (flashCompLedTemperatures){
     res.send(flashCompLedTemperatures);
   })
@@ -14,7 +14,7 @@ router.get('/', function (req, res, next){
 });
 
 router.get('/:id', function (req, res, next){
-  FlashCompLedTemperature.getFlashCompLedCurrentById(req.params.id)
+  FlashCompLedTemperature.getFlashCompLedTemperatureById(req.params.id)
   .then(function (flashCompLedTemperature){
     res.send(flashCompLedTemperature);
   })

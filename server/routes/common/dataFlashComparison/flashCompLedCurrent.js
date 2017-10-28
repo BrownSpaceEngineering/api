@@ -14,7 +14,7 @@ exportObj.getFlashCompLedCurrentById = function (id){
 
 // add one
 exportObj.addFlashCompLedCurrent = function (flashCompLedCurrent){
-  return FlashCompLedCurrent.create(radioTransmissionCurrent);
+  return FlashCompLedCurrent.create(flashCompLedCurrent);
 };
 
 module.exports = exportObj;

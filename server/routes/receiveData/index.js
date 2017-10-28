@@ -327,10 +327,10 @@ function saveDataFlashComparison(comparison, tid) {
 		return saveFlashCompLedTemperature(comparison.temperature, tid, comparison.timestamp)
 	})
 	.then(function() {
-		return saveFlashCompLifepoCurrent(comparison.current, tid, comparison.timestamp)
+		return saveFlashCompLifepoCurrent(comparison.lifepo_current, tid, comparison.timestamp)
 	})
 	.then(function() {
-		return saveFlashCompLifepoVoltage(comparison.voltage, tid, comparison.timestamp)
+		return saveFlashCompLifepoVoltage(comparison.lifepo_voltage, tid, comparison.timestamp)
 	})
 	.catch(function(error) {
 		throw error
@@ -441,15 +441,10 @@ function saveIdleBatteryTemperature(temperature, tid) {
 }
 
 function saveIdleImuTemperature(temperature, tid) {
-	var promises = []
-	for(var i = 0; i < temperature.length; i++){
-		promises.push(IdleImuTemperature.addIdleImuTemperature({
-			index: i, 
-			temperature: temperature[i],
-			tid: tid
-		}))
-	}
-	return Promise.all(promises)
+	return IdleImuTemperature.addIdleImuTemperature({
+		temperature: temperature,
+		tid: tid
+	})
 }
 
 function saveIdleIrAmbientTemperature(temperature, tid) {
@@ -465,27 +460,17 @@ function saveIdleIrAmbientTemperature(temperature, tid) {
 }
 
 function saveIdleRadioTemperature(temperature, tid) {
-	var promises = []
-	for(var i = 0; i < temperature.length; i++){
-		promises.push(IdleRadioTemperature.addIdleRadioTemperature({
-			index: i, 
-			temperature: temperature[i],
-			tid: tid
-		}))
-	}
-	return Promise.all(promises)
+	return IdleRadioTemperature.addIdleRadioTemperature({
+		temperature: temperature,
+		tid: tid
+	})
 }
 
 function saveIdleRadioVoltage(voltage, tid) {
-	var promises = []
-	for(var i = 0; i < voltage.length; i++){
-		promises.push(IdleRadioVoltage.addIdleRadioVoltage({
-			index: i, 
-			voltage: voltage[i],
-			tid: tid
-		}))
-	}
-	return Promise.all(promises)
+	return IdleRadioVoltage.addIdleRadioVoltage({
+		voltage: voltage,
+		tid: tid
+	})
 }
 
 
