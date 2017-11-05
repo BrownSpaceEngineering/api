@@ -408,96 +408,104 @@ function saveFlashCompLifepoVoltage(voltage, tid, timestamp) {
 }
 
 function saveDataIdle(idle, tid) {
-	return saveIdle33VRailVoltage(idle.three_v_rail_voltage, tid)
+	return saveIdle33VRailVoltage(idle.three_v_rail_voltage, tid, idle.timestamp)
 	.then(function() {
-		return saveIdle5VRailVoltage(idle.five_v_rail_voltage, tid)
+		return saveIdle5VRailVoltage(idle.five_v_rail_voltage, tid, idle.timestamp)
 	})
 	.then(function() {
-		return saveIdleBatteryTemperature(idle.battery_temperature, tid)
+		return saveIdleBatteryTemperature(idle.battery_temperature, tid, idle.timestamp)
 	})
 	.then(function() {
-		return saveIdleImuTemperature(idle.imu_temperature, tid)
+		return saveIdleImuTemperature(idle.imu_temperature, tid, idle.timestamp)
 	})
 	.then(function() {
-		return saveIdleIrAmbientTemperature(idle.ir_ambient_temperature, tid)
+		return saveIdleIrAmbientTemperature(idle.ir_ambient_temperature, tid, idle.timestamp)
 	})
 	.then(function() {
-		return saveIdleRadioCurrent(idle.radio_current, tid)
+		return saveIdleRadioCurrent(idle.radio_current, tid, idle.timestamp)
 	})
 	.then(function() {
-		return saveIdleRadioTemperature(idle.radio_temperature, tid)
+		return saveIdleRadioTemperature(idle.radio_temperature, tid, idle.timestamp)
 	})
 	.then(function() {
-		return saveIdleRadioVoltage(idle.radio_voltage, tid)
+		return saveIdleRadioVoltage(idle.radio_voltage, tid, idle.timestamp)
 	})
 	.catch(function(error) {
 		throw error
 	})
 }
 
-function saveIdle33VRailVoltage(voltage, tid) {
+function saveIdle33VRailVoltage(voltage, tid, timestamp) {
 	return Idle33VRailVoltage.addIdle33VRailVoltage({
 		voltage: voltage,
-		tid: tid
+		tid: tid,
+		timestamp: timestamp
 	})
 }
 
-function saveIdle5VRailVoltage(voltage, tid) {
+function saveIdle5VRailVoltage(voltage, tid, timestamp) {
 	return Idle5VRailVoltage.addIdle5VRailVoltage({
 		voltage: voltage,
-		tid: tid
+		tid: tid,
+		timestamp: timestamp
 	})
 }
 
-function saveIdleBatteryTemperature(temperature, tid) {
+function saveIdleBatteryTemperature(temperature, tid, timestamp) {
 	var promises = []
 	for(var i = 0; i < temperature.length; i++){
 		promises.push(IdleBatteryTemperature.addIdleBatteryTemperature({
 			index: i, 
 			temperature: temperature[i],
-			tid: tid
+			tid: tid,
+			timestamp: timestamp
 		}))
 	}
 	return Promise.all(promises)
 }
 
-function saveIdleImuTemperature(temperature, tid) {
+function saveIdleImuTemperature(temperature, tid, timestamp) {
 	return IdleImuTemperature.addIdleImuTemperature({
 		temperature: temperature,
-		tid: tid
+		tid: tid,
+		timestamp: timestamp
 	})
 }
 
-function saveIdleIrAmbientTemperature(temperature, tid) {
+function saveIdleIrAmbientTemperature(temperature, tid, timestamp) {
 	var promises = []
 	for(var i = 0; i < temperature.length; i++){
 		promises.push(IdleIrAmbientTemperature.addIdleIrAmbientTemperature({
 			index: i, 
 			temperature: temperature[i],
-			tid: tid
+			tid: tid,
+			timestamp: timestamp
 		}))
 	}
 	return Promise.all(promises)
 }
 
-function saveIdleRadioCurrent(current, tid) {
+function saveIdleRadioCurrent(current, tid, timestamp) {
 	return IdleRadioCurrent.addIdleRadioCurrent({
 		current: current,
-		tid: tid
+		tid: tid,
+		timestamp: timestamp
 	})
 }
 
-function saveIdleRadioTemperature(temperature, tid) {
+function saveIdleRadioTemperature(temperature, tid, timestamp) {
 	return IdleRadioTemperature.addIdleRadioTemperature({
 		temperature: temperature,
-		tid: tid
+		tid: tid,
+		timestamp: timestamp
 	})
 }
 
-function saveIdleRadioVoltage(voltage, tid) {
+function saveIdleRadioVoltage(voltage, tid, timestamp) {
 	return IdleRadioVoltage.addIdleRadioVoltage({
 		voltage: voltage,
-		tid: tid
+		tid: tid,
+		timestamp: timestamp
 	})
 }
 

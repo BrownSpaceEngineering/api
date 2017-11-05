@@ -13,6 +13,11 @@ module.exports = db.define('idleRadioCurrent', {
   tid: {
     type: Sequelize.INTEGER,
     allowNull: false
+  },
+
+  timestamp: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 
 

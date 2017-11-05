@@ -18,6 +18,11 @@ module.exports = db.define('idleBatteryTemperature', {
   tid: {
     type: Sequelize.INTEGER,
     allowNull: false
+  },
+
+  timestamp: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 
 
