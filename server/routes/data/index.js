@@ -7,6 +7,8 @@ router.use('/currentData', require('./currentData'));
 router.use('/raw', require('./raw'));
 router.use('/dataFlashBurst', require('./dataFlashBurst'));
 router.use('/dataAttitude', require('./dataAttitude'));
-router.use('/dataRadioTransmission', require('./dataRadioTransmission'));
+router.use('/dataFlashComparison', require('./dataFlashComparison'));
+router.use('/idleData', require('./idleData'));
+
 
 module.exports = router;

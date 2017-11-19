@@ -19,10 +19,10 @@ module.exports = db.define('attitudeImuMagnetometer', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+
   timestamp: {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
 
 })

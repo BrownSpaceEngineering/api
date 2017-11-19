@@ -1,9 +1,9 @@
 var router = require('express').Router();
-var CurrDigitalOutput = require('../../common/currentData/currDigitalOutput');
+var CurrBatteryChargingDigitalSignal = require('../../common/currentData/currBatteryChargingDigitalSignal');
 
-//Endpoint: /api/data/currentData/currDigitalOutput
+//Endpoint: /api/data/currentData/currBatteryChargingDigitalSignal
 router.get('/', function (req, res, next){
-	CurrDigitalOutput.findAllCurrDigitalOutput()
+	CurrBatteryChargingDigitalSignal.findAllCurrBatteryChargingDigitalSignal()
     .then(function(readings){
     	res.send(readings);
     })
@@ -13,9 +13,9 @@ router.get('/', function (req, res, next){
 	});
 });
 
-//Endpoint: /api/data/currentData/currDigitalOutput/id
+//Endpoint: /api/data/currentData/currBatteryChargingDigitalSignal/id
 router.get('/:id', function (req, res, next){
-	CurrDigitalOutput.getCurrDigitalOutputById(req.params.id)
+	CurrBatteryChargingDigitalSignal.getCurrBatteryChargingDigitalSignalById(req.params.id)
     .then(function(reading){
     	res.send(reading);
     })

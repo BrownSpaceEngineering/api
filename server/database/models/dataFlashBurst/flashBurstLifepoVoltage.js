@@ -19,10 +19,10 @@ module.exports = db.define('flashBurstLifepoVoltage', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
+
   timestamp: {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
 
 })

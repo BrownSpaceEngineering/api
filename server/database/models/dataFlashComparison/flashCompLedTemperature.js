@@ -4,13 +4,13 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('flashBurstLifepoCurrent', {
+module.exports = db.define('flashCompLedTemperature', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  current: {
+  temperature: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },
@@ -24,5 +24,6 @@ module.exports = db.define('flashBurstLifepoCurrent', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
+
 
 })

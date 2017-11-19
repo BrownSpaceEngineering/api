@@ -4,13 +4,8 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('flashBurstLifepoCurrent', {
-  index: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-
-  current: {
+module.exports = db.define('currBatteryChargingDigitalSignal', {
+  signal: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },
@@ -18,11 +13,7 @@ module.exports = db.define('flashBurstLifepoCurrent', {
   tid: {
     type: Sequelize.INTEGER,
     allowNull: false
-  },
-
-  timestamp: {
-    type: Sequelize.INTEGER,
-    allowNull: false
   }
+
 
 })

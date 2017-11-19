@@ -1,9 +1,9 @@
 var router = require('express').Router();
-var CurrDigitalOutput = require('../../common/currentData/currDigitalOutput');
+var FlashBurstLedCurrent = require('../../common/dataFlashBurst/flashBurstLedCurrent');
 
-//Endpoint: /api/data/currentData/currDigitalOutput
+//Endpoint: /api/data/dataFlashBurst/flashBurstLifepoCurrent
 router.get('/', function (req, res, next){
-	CurrDigitalOutput.findAllCurrDigitalOutput()
+	FlashBurstLedCurrent.findAllFlashBurstLedCurrent()
     .then(function(readings){
     	res.send(readings);
     })
@@ -13,9 +13,9 @@ router.get('/', function (req, res, next){
 	});
 });
 
-//Endpoint: /api/data/currentData/currDigitalOutput/id
+//Endpoint: /api/data/dataFlashBurst/flashBurstLifepoCurrent/id
 router.get('/:id', function (req, res, next){
-	CurrDigitalOutput.getCurrDigitalOutputById(req.params.id)
+	FlashBurstLedCurrent.getFlashBurstLedCurrentById(req.params.id)
     .then(function(reading){
     	res.send(reading);
     })

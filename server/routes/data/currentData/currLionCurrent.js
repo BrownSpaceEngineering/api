@@ -1,9 +1,9 @@
 var router = require('express').Router();
-var CurrDigitalOutput = require('../../common/currentData/currDigitalOutput');
+var CurrLionCurrent = require('../../common/currentData/currLionCurrent');
 
-//Endpoint: /api/data/currentData/currDigitalOutput
+//Endpoint: /api/data/currentData/currLionCurrent
 router.get('/', function (req, res, next){
-	CurrDigitalOutput.findAllCurrDigitalOutput()
+	CurrLionCurrent.findAllCurrLionCurrent()
     .then(function(readings){
     	res.send(readings);
     })
@@ -13,9 +13,9 @@ router.get('/', function (req, res, next){
 	});
 });
 
-//Endpoint: /api/data/currentData/currDigitalOutput/id
+//Endpoint: /api/data/currentData/currLionCurrent/id
 router.get('/:id', function (req, res, next){
-	CurrDigitalOutput.getCurrDigitalOutputById(req.params.id)
+	CurrLionCurrent.getCurrLionCurrentById(req.params.id)
     .then(function(reading){
     	res.send(reading);
     })
