@@ -4,9 +4,10 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server",
-    "seed": "node seed"
+    "test": "mocha",
+    "start": "node server",
+    "seed": "node utils/seed",
+    "dev-start": "LOCAL=true nodemon server"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "body-parser": "^1.15.2",
     "chalk": "^1.1.3",
     "chance": "^1.0.4",
+    "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "fs": "0.0.1-security",
     "morgan": "^1.7.0",
@@ -30,6 +32,14 @@
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
     "pg-native": "^1.10.0",
+    "request-promise": "^4.2.2",
     "sequelize": "^3.27.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-spies": "^0.7.1",
+    "chai-string": "^1.4.0",
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
   }
 }

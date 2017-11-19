@@ -1,7 +1,9 @@
 var Sequelize = require('sequelize');
-var config = require('../../dbConfig.js');
+var url = process.env.DB_URL;
 
-var url = config.dialect + "://" + config.username + ":" + config.password + "@" + config.host + ":" + config.port + "/" + config.database;
+// var config = require('../../dbConfig.js');
+// url = config.dialect + "://" + config.username + ":" + config.password + "@" + config.host + ":" + config.port + "/" + config.database;
+
 
 module.exports = new Sequelize(url, {
   logging: false,
