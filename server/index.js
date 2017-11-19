@@ -1,4 +1,4 @@
-if(process.env.LOCAL=true){
+if (process.env.LOCAL === 'true'){
   require('dotenv').config({path: '.env.local'});
 } else {
   require('dotenv').config(); // defaults to .env
