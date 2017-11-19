@@ -16,7 +16,7 @@ var CurrLionVoltage = require('./models/currentData/currLionVoltage');
 var CurrDigitalOutput = require('./models/currentData/currDigitalOutput');
 
 var AttitudeImuAccelerometer = require('./models/dataAttitude/attitudeImuAccelerometer');
-var AttitudeImuGyroscope= require('./models/dataAttitude/attitudeImuGyroscope');
+var AttitudeImuGyroscope = require('./models/dataAttitude/attitudeImuGyroscope');
 var AttitudeImuMagnetometer = require('./models/dataAttitude/attitudeImuMagnetometer');
 var AttitudeIrTemperature = require('./models/dataAttitude/attitudeIrTemperature');
 var AttitudePhotoDiode = require('./models/dataAttitude/attitudePhotoDiode');
@@ -39,8 +39,6 @@ var IdleIrAmbientTemperature = require('./models/idleData/idleIrAmbientTemperatu
 var IdleRadioTemperature = require('./models/idleData/idleRadioTemperature');
 var IdleRadioVoltage = require('./models/idleData/idleRadioVoltage');
 var IdleRadioCurrent = require('./models/idleData/idleRadioCurrent');
-
-
 
 Preamble.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 ErrorInfo.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
