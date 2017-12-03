@@ -4,12 +4,7 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('attitudeIrTemperature', {
-  index: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-
+module.exports = db.define('radioTemperature', {
   temperature: {
     type: Sequelize.DOUBLE,
     allowNull: false
@@ -24,5 +19,6 @@ module.exports = db.define('attitudeIrTemperature', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
+
 
 })

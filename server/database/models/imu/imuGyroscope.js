@@ -4,13 +4,13 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('flashCompLedCurrent', {
+module.exports = db.define('imuGyroscope', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  current: {
+  gyroscope: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },
@@ -24,6 +24,5 @@ module.exports = db.define('flashCompLedCurrent', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
 
 })

@@ -9,67 +9,72 @@ var Raw = require('./models/raw');
 var Preamble = require('./models/preamble');
 var ErrorInfo = require('./models/errorInfo');
 
-var CurrBatteryChargingAnalogVoltage = require('./models/currentData/currBatteryChargingAnalogVoltage');
-var CurrBatteryChargingDigitalSignal = require('./models/currentData/currBatteryChargingDigitalSignal');
-var CurrLionCurrent = require('./models/currentData/currLionCurrent');
-var CurrLionVoltage = require('./models/currentData/currLionVoltage');
-var CurrDigitalOutput = require('./models/currentData/currDigitalOutput');
+var BatteryChargingAnalogVoltage = require('./models/batteryCharging/batteryChargingAnalogVoltage');
+var BatteryChargingDigitalSignal = require('./models/batteryCharging/batteryChargingDigitalSignal');
 
-var AttitudeImuAccelerometer = require('./models/dataAttitude/attitudeImuAccelerometer');
-var AttitudeImuGyroscope = require('./models/dataAttitude/attitudeImuGyroscope');
-var AttitudeImuMagnetometer = require('./models/dataAttitude/attitudeImuMagnetometer');
-var AttitudeIrTemperature = require('./models/dataAttitude/attitudeIrTemperature');
-var AttitudePhotoDiode = require('./models/dataAttitude/attitudePhotoDiode');
+var RebootCount = require('./models/currentData/rebootCount');
+var TimeToFlash = require('./models/currentData/timeToFlash');
 
-var FlashBurstLifepoCurrent = require('./models/dataFlashBurst/flashBurstLifepoCurrent');
-var FlashBurstLifepoVoltage = require('./models/dataFlashBurst/flashBurstLifepoVoltage');
-var FlashBurstTemperature = require('./models/dataFlashBurst/flashBurstTemperature');
-var FlashBurstLedCurrent = require('./models/dataFlashBurst/flashBurstLedCurrent');
+var EventHistory = require('./models/eventHistory/eventHistory');
 
-var FlashCompLedCurrent = require('./models/dataFlashComparison/flashCompLedCurrent');
-var FlashCompLedTemperature = require('./models/dataFlashComparison/flashCompLedTemperature');
-var FlashCompLifepoCurrent = require('./models/dataFlashComparison/flashCompLifepoCurrent');
-var FlashCompLifepoVoltage = require('./models/dataFlashComparison/flashCompLifepoVoltage');
+var ImuGyroscope = require('./models/imu/imuGyroscope');
+var ImuMagnetometer = require('./models/imu/imuMagnetometer');
+var ImuAccelerometer = require('./models/imu/imuAccelerometer');
 
-var Idle33VRailVoltage = require('./models/idleData/idle33VRailVoltage');
-var Idle5VRailVoltage = require('./models/idleData/idle5VRailVoltage');
-var IdleBatteryTemperature = require('./models/idleData/idleBatteryTemperature');
-var IdleImuTemperature = require('./models/idleData/idleImuTemperature');
-var IdleIrAmbientTemperature = require('./models/idleData/idleIrAmbientTemperature');
-var IdleRadioTemperature = require('./models/idleData/idleRadioTemperature');
-var IdleRadioVoltage = require('./models/idleData/idleRadioVoltage');
-var IdleRadioCurrent = require('./models/idleData/idleRadioCurrent');
+var IRAmbientTemperature = require('./models/irSensor/irAmbientTemperature');
+var IRObjectTemperature = require('./models/irSensor/irObjectTemperature');
+
+var LEDCurrent = require('./models/led/ledCurrent');
+var LEDTemperature = require('./models/led/ledTemperature');
+
+var LifepoCurrent = require('./models/liFePo/liFePoCurrent');
+var LifepoTemperature = require('./models/irSensor/liFePoTemperature');
+var LifepoVoltage = require('./models/irSensor/liFePoVoltage');
+
+var LiOnCurrent = require('./models/liOn/liOnCurrent');
+var LiOnTemperature = require('./models/liOn/liOnTemperature');
+var liOnVoltage = require('./models/liOn/liOnVoltage');
+
+var Photodiode = require('./models/photodiode/photodiode');
+
+var ProcessorTemperature = require('./models/processor/processorTemperature');
+
+var RadioCurrent = require('./models/radio/radioCurrent');
+var RadioTemperature = require('./models/radio/radioTemperature');
+
 
 Preamble.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 ErrorInfo.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-CurrBatteryChargingAnalogVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-CurrBatteryChargingDigitalSignal.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-CurrLionCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-CurrLionVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-CurrDigitalOutput.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+BatteryChargingAnalogVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+BatteryChargingDigitalSignal.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-AttitudeImuAccelerometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-AttitudeImuGyroscope.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-AttitudeImuMagnetometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-AttitudeIrTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-AttitudePhotoDiode.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+RebootCount.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+TimeToFlash.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-FlashBurstLifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-FlashBurstLifepoVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-FlashBurstTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-FlashBurstLedCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+EventHistory.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-FlashCompLedCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-FlashCompLedTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-FlashCompLifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-FlashCompLifepoVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+ImuGyroscope.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+ImuMagnetometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+ImuAccelerometer.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
 
-Idle33VRailVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-Idle5VRailVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-IdleBatteryTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-IdleImuTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-IdleIrAmbientTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-IdleRadioTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-IdleRadioVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
-IdleRadioCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+IRAmbientTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+IRObjectTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+
+LEDCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+LEDTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+
+LifepoCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+LifepoTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+LifepoVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+
+LiOnCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+LiOnTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+liOnVoltage.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+
+Photodiode.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+
+ProcessorTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+
+RadioCurrent.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});
+RadioTemperature.belongsTo(Raw, {as: 'Transmission', foreignKey: 'tid'});

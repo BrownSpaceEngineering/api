@@ -4,13 +4,13 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('attitudeGyroScope', {
+module.exports = db.define('liOnVoltage', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  gyroscope: {
+  voltage: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },
@@ -18,11 +18,7 @@ module.exports = db.define('attitudeGyroScope', {
   tid: {
     type: Sequelize.INTEGER,
     allowNull: false
-  },
-
-  timestamp: {
-    type: Sequelize.INTEGER,
-    allowNull: false
   }
+
 
 })

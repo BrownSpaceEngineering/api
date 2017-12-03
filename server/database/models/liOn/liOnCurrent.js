@@ -4,7 +4,7 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('currLionCurrent', {
+module.exports = db.define('liOnCurrent', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false

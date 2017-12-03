@@ -4,13 +4,13 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('attitudeImuAccelerometer', {
+module.exports = db.define('eventHistory', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  accelerometer: {
+  event: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },
@@ -19,11 +19,10 @@ module.exports = db.define('attitudeImuAccelerometer', {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  
+
   timestamp: {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
 
 })

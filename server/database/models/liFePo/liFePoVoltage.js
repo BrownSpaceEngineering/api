@@ -4,8 +4,13 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('idleImuTemperature', {
-  temperature: {
+module.exports = db.define('liFePoVoltage', {
+  index: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+
+  voltage: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },
@@ -19,6 +24,5 @@ module.exports = db.define('idleImuTemperature', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
 
 })

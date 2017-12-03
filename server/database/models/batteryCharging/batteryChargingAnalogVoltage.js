@@ -4,23 +4,18 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('flashCompLedTemperature', {
+module.exports = db.define('batteryChargingAnalogVoltage', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  temperature: {
+  voltage: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },
 
   tid: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-
-  timestamp: {
     type: Sequelize.INTEGER,
     allowNull: false
   }

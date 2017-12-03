@@ -4,13 +4,13 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('flashCompLifepoVoltage', {
+module.exports = db.define('liFePoCurrent', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  voltage: {
+  current: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },
@@ -24,6 +24,5 @@ module.exports = db.define('flashCompLifepoVoltage', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-
 
 })

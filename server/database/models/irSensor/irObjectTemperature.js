@@ -4,13 +4,13 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('attitudeImuMagnetometer', {
+module.exports = db.define('irObjectTemperature', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  magnetometer: {
+  temperature: {
     type: Sequelize.DOUBLE,
     allowNull: false
   },
@@ -24,5 +24,6 @@ module.exports = db.define('attitudeImuMagnetometer', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
+
 
 })

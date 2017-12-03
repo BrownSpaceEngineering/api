@@ -4,23 +4,13 @@ var Sequelize = require('sequelize');
 
 var db = require('../../_db');
 
-module.exports = db.define('attitudePhotoDiode', {
-  index: {
+module.exports = db.define('rebootCount', {
+  count: {
     type: Sequelize.INTEGER,
-    allowNull: false
-  },
-
-  diode: {
-    type: Sequelize.DOUBLE,
     allowNull: false
   },
 
   tid: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
-
-  timestamp: {
     type: Sequelize.INTEGER,
     allowNull: false
   }
