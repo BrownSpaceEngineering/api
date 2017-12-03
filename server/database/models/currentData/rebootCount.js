@@ -10,6 +10,11 @@ module.exports = db.define('rebootCount', {
     allowNull: false
   },
 
+  timestamp: {
+    type: Sequelize.INTEGER,
+    allowNull:fase
+  },
+
   tid: {
     type: Sequelize.INTEGER,
     allowNull: false

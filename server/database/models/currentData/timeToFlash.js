@@ -10,6 +10,11 @@ module.exports = db.define('timeToFlash', {
     allowNull: false
   },
 
+  timestamp: {
+    type: Sequelize.INTEGER,
+    allowNull:fase
+  },
+
   tid: {
     type: Sequelize.INTEGER,
     allowNull: false

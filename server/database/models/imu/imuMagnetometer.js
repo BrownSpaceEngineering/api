@@ -5,13 +5,18 @@ var Sequelize = require('sequelize');
 var db = require('../../_db');
 
 module.exports = db.define('imuMagnetometer', {
-  index: {
+  x: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  magnetometer: {
-    type: Sequelize.DOUBLE,
+  y: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+
+  z: {
+    type: Sequelize.INTEGER,
     allowNull: false
   },
 

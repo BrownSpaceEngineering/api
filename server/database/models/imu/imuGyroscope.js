@@ -5,15 +5,21 @@ var Sequelize = require('sequelize');
 var db = require('../../_db');
 
 module.exports = db.define('imuGyroscope', {
-  index: {
+  x: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  gyroscope: {
-    type: Sequelize.DOUBLE,
+  y: {
+    type: Sequelize.INTEGER,
     allowNull: false
   },
+
+  z: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+
 
   tid: {
     type: Sequelize.INTEGER,

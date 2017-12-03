@@ -14,19 +14,20 @@ module.exports = db.define('preamble', {
     type: Sequelize.INTEGER
   },
 
-  messageAndOpStates: {
+  messageState: {
     type: Sequelize.INTEGER,
     allowNull: false
 
   },
 
-  bytesInError: {
-    type: Sequelize.INTEGER
-
+  opState: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
 
-  bytesInMessage: {
+  bytesInData: {
     type: Sequelize.INTEGER
+
   },
 
   tid: {
