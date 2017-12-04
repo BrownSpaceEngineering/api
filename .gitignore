@@ -1,5 +1,4 @@
 /node_modules/
-dbConfig.js
 .env
-.env.test
 .env.local
+.env.test
