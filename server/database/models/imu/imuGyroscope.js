@@ -2,36 +2,33 @@
 
 var Sequelize = require('sequelize');
 
-var db = require('../_db');
+var db = require('../../_db');
 
-module.exports = db.define('preamble', {
-  callsign: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-
-  timestamp: {
-    type: Sequelize.INTEGER
-  },
-
-  messageState: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-
-  },
-
-  opState: {
+module.exports = db.define('imuGyroscope', {
+  x: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  bytesInData: {
-    type: Sequelize.INTEGER
-
+  y: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   },
+
+  z: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+
 
   tid: {
     type: Sequelize.INTEGER,
     allowNull: false
+  },
+
+  timestamp: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
-});
+
+})

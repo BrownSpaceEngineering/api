@@ -2,16 +2,16 @@
 
 var Sequelize = require('sequelize');
 
-var db = require('../_db');
+var db = require('../../_db');
 
-module.exports = db.define('errorInfo', {
+module.exports = db.define('batteryChargingAnalogVoltage', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  errorCode: {
-    type: Sequelize.INTEGER,
+  voltage: {
+    type: Sequelize.DOUBLE,
     allowNull: false
   },
 
@@ -24,4 +24,6 @@ module.exports = db.define('errorInfo', {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-});
+
+
+})

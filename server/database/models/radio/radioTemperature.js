@@ -2,26 +2,23 @@
 
 var Sequelize = require('sequelize');
 
-var db = require('../_db');
+var db = require('../../_db');
 
-module.exports = db.define('errorInfo', {
-  index: {
-    type: Sequelize.INTEGER,
+module.exports = db.define('radioTemperature', {
+  temperature: {
+    type: Sequelize.DOUBLE,
     allowNull: false
   },
 
-  errorCode: {
+  tid: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
   timestamp: {
     type: Sequelize.INTEGER,
-    allowNull:fase
-  },
-
-  tid: {
-    type: Sequelize.INTEGER,
     allowNull: false
   }
-});
+
+
+})

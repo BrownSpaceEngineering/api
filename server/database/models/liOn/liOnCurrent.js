@@ -2,26 +2,23 @@
 
 var Sequelize = require('sequelize');
 
-var db = require('../_db');
+var db = require('../../_db');
 
-module.exports = db.define('errorInfo', {
+module.exports = db.define('liOnCurrent', {
   index: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  errorCode: {
-    type: Sequelize.INTEGER,
+  current: {
+    type: Sequelize.DOUBLE,
     allowNull: false
-  },
-
-  timestamp: {
-    type: Sequelize.INTEGER,
-    allowNull:fase
   },
 
   tid: {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-});
+
+
+})
