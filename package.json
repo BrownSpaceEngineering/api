@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "start": "node server",
-    "seed": "node utils/seed",
+    "ping": "node utils/pinger",
     "dev-start": "LOCAL=true nodemon server"
   },
   "repository": {

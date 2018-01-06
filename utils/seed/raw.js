@@ -1,15 +1,9 @@
+var Chance = require('chance'); // import constructor
+var chance = new Chance(); // create instance of chance object
+
 function generateRaw(){
-  var Chance = require('chance'); // import constructor
-  var chance = new Chance(); // create instance of chance object
-
-  var Raw = require('../server/routes/common/raw');
-
-  for (var i = 0; i < 100; i++) {
-    var randomRaw = chance.string({length: 864, pool: '0123456789abcdef'});
-    Raw.addRaw({raw: randomRaw});
-  }
+  return chance.string({pool: '01', length: 32}) // just a placeholder for now since we don't have any real byte conversion yet.
 }
 
 module.exports = generateRaw;
-
 
