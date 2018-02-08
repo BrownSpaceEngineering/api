@@ -5,9 +5,9 @@ function generatePreamble() {
   return {
     callsign: chance.word(),
     timestamp: chance.integer(),
-    messageState: chance.integer(),
-    opState: chance.integer(),
-    bytesInData: chance.integer()
+    message_state: chance.integer(),
+    op_state: chance.integer(),
+    bytes_in_data: chance.integer()
   }
 }
 
