@@ -1,4 +1,4 @@
-var IrObjectTemperature = require('../../../database/models/ir/irObjectTemperature');
+var IrObjectTemperature = require('../../../database/models/irSensor/irObjectTemperature');
 
 var exportObj = {};
 

@@ -1,4 +1,4 @@
-var LifepoVoltage = require('../../../database/models/liFePo/lifepoVoltage');
+var LifepoVoltage = require('../../../database/models/liFePo/liFePoVoltage');
 
 var exportObj = {};
 
