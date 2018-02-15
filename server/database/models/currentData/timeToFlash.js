@@ -12,7 +12,7 @@ module.exports = db.define('timeToFlash', {
 
   timestamp: {
     type: Sequelize.INTEGER,
-    allowNull:fase
+    allowNull:false
   },
 
   tid: {

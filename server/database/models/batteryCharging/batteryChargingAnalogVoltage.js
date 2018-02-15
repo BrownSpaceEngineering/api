@@ -17,7 +17,7 @@ module.exports = db.define('batteryChargingAnalogVoltage', {
 
   timestamp: {
     type: Sequelize.INTEGER,
-    allowNull:fase
+    allowNull:false
   },
 
   tid: {

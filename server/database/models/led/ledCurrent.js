@@ -17,7 +17,7 @@ module.exports = db.define('ledCurrent', {
 
   timestamp: {
     type: Sequelize.INTEGER,
-    allowNull:fase
+    allowNull:false
   },
 
   tid: {

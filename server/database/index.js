@@ -28,8 +28,8 @@ var LEDCurrent = require('./models/led/ledCurrent');
 var LEDTemperature = require('./models/led/ledTemperature');
 
 var LifepoCurrent = require('./models/liFePo/liFePoCurrent');
-var LifepoTemperature = require('./models/irSensor/liFePoTemperature');
-var LifepoVoltage = require('./models/irSensor/liFePoVoltage');
+var LifepoTemperature = require('./models/liFePo/liFePoTemperature');
+var LifepoVoltage = require('./models/liFePo/liFePoVoltage');
 
 var LiOnCurrent = require('./models/liOn/liOnCurrent');
 var LiOnTemperature = require('./models/liOn/liOnTemperature');
