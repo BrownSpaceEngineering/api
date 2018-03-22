@@ -2,17 +2,16 @@ var Parser = require('binary-parser').Parser;
 
 var Conversions = require('./conversions.js');
 
+
+// call this function with raw as a hex buffer and it'll give you a json!
+function parse(buf) {
+    return preambleParser.parse(buf);
+}
+
+
 // formatter for errors, takes in the array of uint8s
 function error_formatter(arr){
     return arr;
-}
-
-function to_float(){
-    return (elt) => {return elt;};
-}
-
-function to_float_arr(){
-    return (arr) => {return arr;};
 }
 
 // takes in an array and a number of reps and produces an array
@@ -154,14 +153,10 @@ const dataIdleParser = new Parser()
           formatter: make_formatter(Conversions.battery_charging_analog_voltages, 8)
       })
       .uint16le('battery_charging_digital_signals', {
-          formatter: to_bool_arr_cutoff(14)
+          formatter: to_bool_arr_cutoff(16)
       })
-      .uint8('radio_temperature', {
-          formatter: to_float()
-      })
-      .uint8('processor_temperature', {
-          formatter: to_float()
-      })
+      .uint8('radio_temperature')
+      .uint8('processor_temperature')
       .array('ir_ambient_temperatures', {
           type: 'uint8',
           length: 6,
@@ -246,56 +241,86 @@ const fullDataAttitudeParser = new Parser()
           type: dataAttitudeParser
       });
 
-const flashBurstParser = new Parser()
+const newFlashBurstParser = new Parser()
       .endianess('little')
       .array('led_temperatures', {
           type: "uint8",
-          length: 28,
-          formatter: function(arr){
-              return partition_array(make_formatter(repeat_array(Conversions.led_temperatures, 7), 8)(arr), 7);
-          }
+          length: 28
       })
       .array('lifepo_battery_temperatures', {
           type: "uint8",
-          length: 14,
-          formatter: function(arr){
-              return partition_array(make_formatter(repeat_array(Conversions.lifepo_battery_temperatures, 7), 8)(arr), 7);
-          }
+          length: 14
       })
       .array('lifepo_currents', {
           type: "uint8",
-          length: 28,
-          formatter: function(arr){
-              return partition_array(make_formatter(repeat_array(Conversions.lifepo_currents, 7), 8)(arr), 7);
-          }
+          length: 28
       })
       .array('lifepo_voltages', {
           type: "uint8",
-          length: 28,
-          formatter: function(arr){
-              return partition_array(make_formatter(repeat_array(Conversions.lifepo_voltages, 7), 8)(arr), 7);
-          }
+          length: 28
       })
       .array('led_currents', {
           type: "uint8",
-          length: 28,
-          formatter: function(arr){
-              return partition_array(make_formatter(repeat_array(Conversions.led_currents, 7), 8)(arr), 7);
-          }
+          length: 28
       })
       .array('imu_gyroscope', {
           type: 'uint8',
-          length: 21,
-          formatter: function(arr){
-              return partition_array(make_formatter(repeat_array(Conversions.imu_gyroscope, 7), 8)(arr), 7);
-          }
+          length: 21
       })
       .uint32le('timestamp');
+
+
+
+// const flashBurstParser = new Parser()
+//       .endianess('little')
+//       .array('led_temperatures', {
+//           type: "uint8",
+//           length: 28,
+//           formatter: function(arr){
+//               return partition_array(make_formatter(repeat_array(Conversions.led_temperatures, 7), 8)(arr), 7);
+//           }
+//       })
+//       .array('lifepo_battery_temperatures', {
+//           type: "uint8",
+//           length: 14,
+//           formatter: function(arr){
+//               return partition_array(make_formatter(repeat_array(Conversions.lifepo_battery_temperatures, 7), 8)(arr), 7);
+//           }
+//       })
+//       .array('lifepo_currents', {
+//           type: "uint8",
+//           length: 28,
+//           formatter: function(arr) {
+//               return partition_array(make_formatter(repeat_array(Conversions.lifepo_currents, 7), 8)(arr), 7);
+//           }
+//       })
+//       .array('lifepo_voltages', {
+//           type: "uint8",
+//           length: 28,
+//           formatter: function(arr){
+//               return partition_array(make_formatter(repeat_array(Conversions.lifepo_voltages, 7), 8)(arr), 7);
+//           }
+//       })
+//       .array('led_currents', {
+//           type: "uint8",
+//           length: 28,
+//           formatter: function(arr){
+//               return partition_array(make_formatter(repeat_array(Conversions.led_currents, 7), 8)(arr), 7);
+//           }
+//       })
+//       .array('imu_gyroscope', {
+//           type: 'uint8',
+//           length: 21,
+//           formatter: function(arr){
+//               return partition_array(make_formatter(repeat_array(Conversions.imu_gyroscope, 7), 8)(arr), 7);
+//           }
+//       })
+//       .uint32le('timestamp');
 
 // making this for consistency's sake but not strictly necessary
 const fullFlashBurstParser = new Parser()
       .nest('one', {
-          type: flashBurstParser
+          type: newFlashBurstParser
       });
 
 const flashComparisonParser = new Parser()
@@ -378,7 +403,7 @@ const lowPowerParser = new Parser()
           formatter: make_formatter(Conversions.battery_charging_analog_voltages, 8)
       })
       .uint16le('battery_charging_digital_signals', {
-          formatter: to_bool_arr_cutoff(14)
+          formatter: to_bool_arr_cutoff(16)
       })
       .array('ir_object_temperatures', {
           type: 'uint16le',
@@ -434,7 +459,7 @@ const currentDataParser = new Parser()
           formatter: make_formatter(Conversions.battery_charging_analog_voltages, 8)
       })
       .uint16le('battery_charging_digital_signals', {
-          formatter: to_bool_arr_cutoff(14)
+          formatter: to_bool_arr_cutoff(16)
       })
       .array('lifepo_voltages', {
           type: 'uint8',
@@ -445,13 +470,14 @@ const currentDataParser = new Parser()
 const preambleParser = new Parser()
       .endianess('little')
       .string('callsign', {
-          length : 4,
+          length : 6,
           encoding : 'ascii'
       })
       .uint32le('timestamp')
       .bit3('message_type')
       .bit3('satellite_state')
-      .bit2('padding') // this parser library does have a skip function but it only works in byte intervals so we have to do this.
+      .bit1('spf_st')
+      .bit1('mram_cpy')
       .uint8('bytes_of_data')
       .uint8('num_errors')
       .nest('current_data', {
@@ -482,17 +508,9 @@ const preambleParser = new Parser()
           length: 32
       });
 
+buf = new Buffer("574c39585a450300000029a5090c010206030303030606f0f1020101010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009c31009b30009b2f00a034009c32009c31009b30009b2f00a034000000afce6a6441b8c45b5e7fb9046d348da143078c9207fddd8a15ca1520998b6e76", "hex");
 
-idleBuf = Buffer("4b3141440000000010a10b3c0924c801000000070700000505060577c62f269888f5b430349d3a0d0fbd2fa1f70fd968f4d977c62f269888f5b430349d3a0d0fbd2fa1f70fd968f4d977c62f269888f5b430349d3a0d0fbd2fa1f70fd968f4d977c62f269888f5b430349d3a0d0fbd2fa1f70fd968f4d977c62f269888f5b430349d3a0d0fbd2fa1f70fd968f4d977c62f269888f5b430349d3a0d0fbd2fa1f70fd968f4d977c62f269888f5b430349d3a0d0fbd2fa1f70fd968f4d90133000137000129000133000137000134000135000135000135000135000136000000df26974f474694fe6cdc46d1fad9d00468b35a978e662fb9c2c94b72864822eb", "hex");
+buf2 = new Buffer("574c39585a450300000028a10b0c010206030303030606f0f10201010100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000009c32009c31009b30009b2f00a034009c32009c31009b30009b2f00a034009c3200f1ac87b7bd3b43b9032c22d779428351cdc15f4e7ce37ca7443781dbc53db7d4", "hex");
 
-attitudeBuf = Buffer("4b3141440000000011a50a3c0909540100000007070000050605052f26bedeecbf38adb0dfa30d29c86fdf7806b8840a72a22a4cae77c78ac51fc71883ab27735c9418d7491f308121cd0dd94671b19a722a25118c811ad42dac767281827f56637b60a7aa7face1f0e4384d663a1eb750aa6738e0eeb6668c4764c30cea8994ea53bdff44dca520d5a34c8e9493a12474cd1a04a37f41ff124f42f6f954b38436e0bbbf9785a20ac15a481cc9c58969d2aa32cf71c8d71451a2068dc9fac91801350001350001360001360001360001360001290001340001350001350000751ffe5beb4c6158925a8f85880103571f892b3750569ec9e2ac5c22701929","hex");
-
-flashBurstBuf = Buffer("4b3141440000000012970f3c091e960100000007070000050505053c6e4bd24e6d0f48cb56a494c251f998eeddd12e85dd1386aa3a8361c7679f542d3174b748c7aa250131b7e55497345c8565b7ff8404ea855aeef6695844f38e2c2c4e195388facffad0698f49e47e18c518ada0f78b05cc466dbdea156abfc01b4863a084e8bf5c88187ef43f64cc47bc8a3c5933b875882c67c75e2ad2e4ed8cfd31dd642ca82e60b035be8fbd69073a322846a1374e0134000135000135000135000135000136000136000000000106000105000104000103000102000101000000004920b2922b43e479a12b374b53fe7279bf4774af033d9471f4f496d7d7bcfd","hex");
-
-flashComparisonBuf = Buffer("4b3141440000000013960f3c09c3770100000005070000050505050000000000000000000000009edd0000000092f5e58c98f4b5f2cb371f1613bb1415a351236aa8e85c6f7cc98bdcd0c31d5fdac11b3bee5a129c8f49d5ea208e663ce082fd3509f6e6fdb3f67f1239d935e2a9dd1fb13bb03746777e75b2dcdb04cb770dc5f202dce9f3eb58c104f5df0a5c22eb2ce0d433e739e4b09ddb1f2ab8dfbcfafc5c600c9318b8e18afc6746fd834683d3eb0105000104000103000102000101000000000000000000000000000000000000000000000133ff0137ff0133ff0077190680db2f8548fb5db69387f3a9a29c3b99741777450e9832a563f1aacc","hex");
-
-lowPowerBuf = Buffer("4b3141440000000010960f3c090f2b010000000707000005050505d4d6fb29b965c8dccd9f3f94babc33751bf3e200edc3af7fefdb28d0a2ebd4d6fb29b965c8dccd9f3f94babc33751bf3e200edc3af7fefdb28d0a2ebd4d6fb29b965c8dccd9f3f94babc33751bf3e200edc3af7fefdb28d0a2ebd4d6fb29b965c8dccd9f3f94babc33751bf3e200edc3af7fefdb28d0a2ebd4d6fb29b965c8dccd9f3f94babc33751bf3e200edc3af7fefdb28d0a2eb0133ff0137ff0133ff0137ff0134ff0135ff0135ff0135ff0135ff0136ff0136ff0136ff0136ff0129000133000082c2c01ab1b0d7e3a6b5a16aedfb24254d4e40d214bedbf67ce5e568c1b50b","hex");
-
-//console.log(preambleParser.parse(idleBuf));
-// console.log(preambleParser.parse(attitudeBuf));
-console.log(preambleParser.parse(flashBurstBuf));
+console.log(parse(buf));
+console.log(parse(buf2));
