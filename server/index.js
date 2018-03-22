@@ -1,7 +1,7 @@
-if (process.env.LOCAL === 'true'){
-  require('dotenv').config({path: '.env.local'});
+if (process.env.PRODUCTION === 'true'){
+  require('dotenv').config();  // looks for .env
 } else {
-  require('dotenv').config(); // defaults to .env
+  require('dotenv').config({path: '.env.local'});
 }
 
 var express = require('express');

@@ -7,7 +7,7 @@
     "test": "mocha",
     "start": "node server",
     "ping": "node utils/pinger",
-    "dev-start": "LOCAL=true nodemon server"
+    "dev-start": "nodemon server"
   },
   "repository": {
     "type": "git",
