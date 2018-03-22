@@ -11,7 +11,7 @@ module.exports = db.define('batteryChargingDigitalSignal', {
   },
   
   signal: {
-    type: Sequelize.DOUBLE,
+    type: Sequelize.BOOLEAN,
     allowNull: false
   },
 

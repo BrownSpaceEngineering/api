@@ -1,4 +1,4 @@
-var CurrentDataTimeToFlash = require('../../../database/models/currentData/timeToFlash');
+var TimeToFlash = require('../../../database/models/currentData/timeToFlash');
 
 var exportObj = {};
 

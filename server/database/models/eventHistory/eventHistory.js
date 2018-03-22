@@ -11,7 +11,7 @@ module.exports = db.define('eventHistory', {
   },
 
   event: {
-    type: Sequelize.DOUBLE,
+    type: Sequelize.BOOLEAN,
     allowNull: false
   },
 

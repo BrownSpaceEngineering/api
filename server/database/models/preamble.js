@@ -27,7 +27,10 @@ module.exports = db.define('preamble', {
 
   bytesInData: {
     type: Sequelize.INTEGER
+  },
 
+  numErrors: {
+    type: Sequelize.INTEGER
   },
 
   tid: {
