@@ -13,30 +13,6 @@ router.get('/', function (req, res, next){
   });
 });
 
-// Add a new errorInfo
-router.post('/', function (req, res, next){
-  var errorToCreate = req.body;
-  ErrorInfo.addErrorInfo(errorToCreate)
-  .then(function (createdErrorInfo){
-    res.send(createdErrorInfo);
-  })
-  .catch(function (err){
-    console.error(err);
-    res.status(500).send(err);
-  });
-});
-
-// Delete a specific error Info by its id (will probably need admin status?)
-router.delete('/:id', function (req, res, next){
-  ErrorInfo.deleteErrorInfo(req.params.id)
-  .then(function (){
-    res.send('Successfully deleted');
-  })
-  .catch(function (err){
-    console.error(err);
-    res.status(500).send(err);
-  });
-});
 
 // Get a specific errorInfo by its unique id
 router.get('/:id', function (req, res, next){
